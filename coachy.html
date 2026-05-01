@@ -1,404 +1,711 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Coachy — Corporate Coaching Management System | Abid Wani</title>
-  <!-- Tailwind CSS (your compiled output) -->
-  <link href="./styles/output.css" rel="stylesheet">
-  <!-- Custom styles -->
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Mono:wght@400;700&display=swap');
-    
-    /* Dark overlay background - matches portfolio */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at 70% 10%, rgba(78, 205, 196, 0.08), rgba(0, 0, 0, 0.96));
-      pointer-events: none;
-      z-index: -2;
-    }
-    
-    body::after {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjciIG51bU9jdGF2ZXM9IjMiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjZikgb3BhY2l0eT0iMC4wMiIvPjwvc3ZnPg==');
-      background-repeat: repeat;
-      opacity: 0.08;
-      pointer-events: none;
-      z-index: -1;
-    }
-    
-    /* Custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 4px;
-    }
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(255,255,255,0.2);
-      border-radius: 4px;
-    }
-    
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Coachy — Corporate Coaching Management System | Abid Wani</title>
+    <link href="./styles/output.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Mono:wght@400;700&display=swap');
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 70% 10%, rgba(78, 205, 196, 0.08), rgba(0, 0, 0, 0.96));
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjciIG51bU9jdGF2ZXM9IjMiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjZikgb3BhY2l0eT0iMC4wMiIvPjwvc3ZnPg==');
+            background-repeat: repeat;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse-glow {
+            0%,
+            100% {
+                box-shadow: 0 0 8px rgba(78, 205, 196, 0.15);
+            }
+            50% {
+                box-shadow: 0 0 18px rgba(78, 205, 196, 0.35);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        .card-hover {
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-3px);
+            border-color: rgba(78, 205, 196, 0.4);
+            box-shadow: 0 12px 40px rgba(78, 205, 196, 0.08);
+        }
+
+        .nav-pill {
+            transition: all 0.25s ease;
+        }
+        .nav-pill:hover {
+            background: rgba(78, 205, 196, 0.12);
+            color: #4ECDC4;
+        }
+
+        .stat-badge {
+            animation: pulse-glow 3s infinite;
+        }
+
+        .section-divider {
+            background: linear-gradient(90deg, transparent, rgba(78, 205, 196, 0.3), transparent);
+            height: 1px;
+            border: none;
+        }
+    </style>
 </head>
 <body class="bg-black text-white font-sans antialiased">
 
-  <div class="max-w-3xl mx-auto px-5 py-8 md:py-10 relative">
-    
-    <!-- Back link -->
-    <a href="index.html" class="inline-flex items-center gap-2 text-white/50 font-mono text-xs mb-10 transition-all duration-300 hover:text-mint-400 hover:gap-3 group">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-        <path d="M15 18L9 12L15 6"/>
-      </svg>
-      <span class="tracking-wide">Back to portfolio</span>
-    </a>
+    <div class="max-w-3xl mx-auto px-5 py-8 md:py-12 relative">
 
-    <!-- Main Content -->
-    <div class="flex flex-col items-center">
-      
-      <!-- Hero Section -->
-      <div class="text-center mb-10" style="animation: fadeInUp 0.5s ease-out forwards;">
-        <div class="flex items-center justify-center gap-2 mb-4">
-          <span class="font-mono text-[11px] bg-mint-400/10 text-mint-400 px-2 py-0.5 rounded-full border border-mint-400/20">03</span>
-          <span class="font-mono text-[11px] tracking-wider text-white/40 uppercase">Case Study</span>
-        </div>
-        
-        <h1 class="text-3xl md:text-5xl font-bold tracking-tight mb-3 bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
-          Coachy <span class="text-white/70">Web App</span>
-        </h1>
-        
-        <p class="text-white/60 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
-          Corporate coaching management system that simplifies participant management, improves administrative efficiency, 
-          and enhances goal tracking, addressing the challenges of handling diverse needs, reporting, and payments.
-        </p>
-        
-        <div class="flex flex-wrap justify-center gap-2 mt-4">
-          <span class="text-[11px] font-mono text-white/60 bg-white/5 backdrop-blur-sm px-3 py-1 rounded-full border border-white/5">User Interviews</span>
-          <span class="text-[11px] font-mono text-white/60 bg-white/5 backdrop-blur-sm px-3 py-1 rounded-full border border-white/5">UI Design</span>
-          <span class="text-[11px] font-mono text-white/60 bg-white/5 backdrop-blur-sm px-3 py-1 rounded-full border border-white/5">Usability</span>
-          <span class="text-[11px] font-mono text-white/60 bg-white/5 backdrop-blur-sm px-3 py-1 rounded-full border border-white/5">SaaS</span>
-          <span class="text-[11px] font-mono text-white/60 bg-white/5 backdrop-blur-sm px-3 py-1 rounded-full border border-white/5">Product Strategy</span>
-        </div>
-      </div>
-
-      <!-- Hero Visual - Glass Cards -->
-      <div class="w-full bg-white/5 backdrop-blur-sm rounded-3xl p-5 md:p-6 border border-white/5 mb-10" style="animation: fadeInUp 0.5s ease-out 0.1s forwards; opacity: 0;">
-        <div class="flex justify-center gap-4 md:gap-6 flex-wrap">
-          <div class="bg-white/5 rounded-2xl px-5 py-3 text-center min-w-[100px] border border-white/5 transition-all duration-300 hover:-translate-y-1 hover:border-mint-400/30">
-            <div class="text-3xl mb-1">👥</div>
-            <div class="text-sm font-medium text-white/80">Participant Management</div>
-          </div>
-          <div class="bg-white/5 rounded-2xl px-5 py-3 text-center min-w-[100px] border border-white/5 transition-all duration-300 hover:-translate-y-1 hover:border-mint-400/30">
-            <div class="text-3xl mb-1">🎯</div>
-            <div class="text-sm font-medium text-white/80">Goal Tracking</div>
-          </div>
-          <div class="bg-white/5 rounded-2xl px-5 py-3 text-center min-w-[100px] border border-white/5 transition-all duration-300 hover:-translate-y-1 hover:border-mint-400/30">
-            <div class="text-3xl mb-1">📊</div>
-            <div class="text-sm font-medium text-white/80">Analytics & Reports</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Design Phase -->
-      <div class="w-full">
-        <div class="text-center mb-8">
-          <span class="font-mono text-[11px] tracking-[2px] text-mint-400 bg-mint-400/10 px-3 py-1 rounded-full inline-block mb-3">Design Phase</span>
-          <h2 class="text-2xl md:text-3xl font-semibold tracking-tight bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
-            Streamlining corporate <br>coaching operations
-          </h2>
-          <div class="w-12 h-0.5 bg-mint-400 mx-auto mt-3 rounded-full"></div>
-        </div>
-
-        <!-- Challenge -->
-        <div class="mb-8">
-          <h3 class="text-xl font-semibold mb-2 text-mint-400">The challenge</h3>
-          <p class="text-white/70 leading-relaxed text-sm md:text-base">
-            Corporate coaching programs face significant administrative overhead — managing diverse 
-            participant needs across departments, tracking individual progress toward goals, generating 
-            compliance reports, and handling complex payment structures. Existing solutions were either 
-            overly simplistic (spreadsheets) or enterprise-bloated (expensive, hard to use). The challenge 
-            was to build a unified web app that serves three user personas: <strong>HR administrators</strong>, 
-            <strong>coaches</strong>, and <strong>participants</strong> — each with distinct workflows and priorities.
-          </p>
-        </div>
-
-        <!-- Design Approach -->
-        <div class="mb-8">
-          <h3 class="text-xl font-semibold mb-2 text-mint-400">Design approach</h3>
-          <p class="text-white/70 leading-relaxed text-sm md:text-base">
-            We applied a user-centered design methodology rooted in extensive stakeholder interviews. 
-            Over 8 weeks, we conducted <strong>22 user interviews</strong> with HR leaders, certified coaches, 
-            and program participants across 5 organizations. Key insights revealed that administrators 
-            needed bulk operations and reporting, coaches wanted session notes and goal tracking, and 
-            participants craved visibility into their progress. The design solution centers on three 
-            tailored dashboards, role-based workflows, and a unified data model.
-          </p>
-        </div>
-
-        <!-- UI Showcase - Three Dashboards -->
-        <div class="flex flex-wrap justify-center gap-6 my-10">
-          <!-- Admin Dashboard -->
-          <div class="text-center flex-1 min-w-[200px]">
-            <div class="bg-[#0E121F] rounded-xl overflow-hidden shadow-2xl border border-white/10 max-w-[260px] mx-auto">
-              <div class="bg-[#131A28] px-3 py-2 text-center border-b border-white/5">
-                <span class="text-[10px] font-mono text-mint-400">Admin Dashboard</span>
-              </div>
-              <div class="bg-[#080C16] p-3 min-h-[260px]">
-                <div class="flex gap-1.5 mb-3">
-                  <div class="bg-white/5 rounded-lg p-1.5 text-center flex-1"><div class="text-[11px] font-bold text-mint-400">128</div><div class="text-[7px] text-white/40">Participants</div></div>
-                  <div class="bg-white/5 rounded-lg p-1.5 text-center flex-1"><div class="text-[11px] font-bold text-mint-400">12</div><div class="text-[7px] text-white/40">Coaches</div></div>
-                  <div class="bg-white/5 rounded-lg p-1.5 text-center flex-1"><div class="text-[11px] font-bold text-mint-400">87%</div><div class="text-[7px] text-white/40">Completion</div></div>
-                </div>
-                <div class="space-y-1.5 mb-2">
-                  <div class="bg-white/5 rounded-lg p-1.5 text-[8px]">👤 Marketing Team · 24 members</div>
-                  <div class="bg-white/5 rounded-lg p-1.5 text-[8px]">👤 Sales Team · 18 members</div>
-                  <div class="bg-white/5 rounded-lg p-1.5 text-[8px]">👤 Engineering · 32 members</div>
-                </div>
-                <div class="border border-dashed border-mint-400/30 rounded-lg p-1.5 text-center text-[8px] text-mint-400">+ Bulk Import Participants</div>
-              </div>
-            </div>
-            <p class="text-[11px] font-mono text-white/40 mt-2">Admin dashboard — participant management</p>
-          </div>
-
-          <!-- Coach Workspace -->
-          <div class="text-center flex-1 min-w-[200px]">
-            <div class="bg-[#0E121F] rounded-xl overflow-hidden shadow-2xl border border-white/10 max-w-[260px] mx-auto">
-              <div class="bg-[#131A28] px-3 py-2 text-center border-b border-white/5">
-                <span class="text-[10px] font-mono text-mint-400">Coach Workspace</span>
-              </div>
-              <div class="bg-[#080C16] p-3 min-h-[260px]">
-                <div class="space-y-2 mb-3">
-                  <div><div class="text-[9px] font-medium mb-0.5">Leadership skills</div><div class="h-1 bg-white/10 rounded-full overflow-hidden"><div class="h-full bg-mint-400 rounded-full w-[65%]"></div></div><div class="text-right text-[7px] text-white/40">65%</div></div>
-                  <div><div class="text-[9px] font-medium mb-0.5">Communication</div><div class="h-1 bg-white/10 rounded-full overflow-hidden"><div class="h-full bg-mint-400 rounded-full w-[80%]"></div></div><div class="text-right text-[7px] text-white/40">80%</div></div>
-                </div>
-                <div class="bg-white/5 rounded-lg p-2">
-                  <div class="text-[8px] text-white/60">📝 Session notes</div>
-                  <div class="text-[7px] text-white/40 mt-0.5">Q3 review completed</div>
-                </div>
-              </div>
-            </div>
-            <p class="text-[11px] font-mono text-white/40 mt-2">Coach workspace — goal tracking</p>
-          </div>
-
-          <!-- Participant Portal -->
-          <div class="text-center flex-1 min-w-[200px]">
-            <div class="bg-[#0E121F] rounded-xl overflow-hidden shadow-2xl border border-white/10 max-w-[260px] mx-auto">
-              <div class="bg-[#131A28] px-3 py-2 text-center border-b border-white/5">
-                <span class="text-[10px] font-mono text-mint-400">Participant Portal</span>
-              </div>
-              <div class="bg-[#080C16] p-3 min-h-[260px]">
-                <div class="bg-white/5 rounded-lg p-2 text-center mb-3">
-                  <div class="text-[8px]">📅 Next session: Tomorrow, 2:00 PM</div>
-                </div>
-                <div class="space-y-1.5 mb-2">
-                  <div class="bg-white/5 rounded-full px-2 py-1 text-center text-[8px]">🏆 Improve public speaking</div>
-                  <div class="bg-white/5 rounded-full px-2 py-1 text-center text-[8px]">📈 Increase sales closing rate</div>
-                </div>
-                <div class="bg-mint-400/10 rounded-lg p-1.5 text-center text-[8px] text-mint-400">✅ Payment: Up to date</div>
-              </div>
-            </div>
-            <p class="text-[11px] font-mono text-white/40 mt-2">Participant portal — progress visibility</p>
-          </div>
-        </div>
-
-        <!-- Visual Identity -->
-        <div class="mb-8">
-          <h3 class="text-xl font-semibold mb-2 text-mint-400">Visual identity</h3>
-          <p class="text-white/70 leading-relaxed text-sm md:text-base">
-            Coachy's interface features a sophisticated dark theme with deep purple-black gradients, 
-            vibrant mint and coral accents for interactive elements, and clean sans-serif typography. 
-            The design prioritizes clarity and reduces eye strain during long administrative sessions. 
-            Card-based layouts, subtle shadows, and consistent spacing create a professional yet approachable 
-            atmosphere that builds trust for enterprise users.
-          </p>
-        </div>
-
-        <!-- Three Column User Flows -->
-        <div class="grid md:grid-cols-3 gap-3 my-8">
-          <div class="bg-white/5 rounded-xl p-3 text-center border border-white/5">
-            <div class="text-sm font-semibold text-mint-400 mb-1">👔 Admin Flow</div>
-            <p class="text-white/50 text-[9px] leading-relaxed">Import participants → Assign coaches → Track budgets → Generate reports</p>
-          </div>
-          <div class="bg-white/5 rounded-xl p-3 text-center border border-white/5">
-            <div class="text-sm font-semibold text-mint-400 mb-1">🎓 Coach Flow</div>
-            <p class="text-white/50 text-[9px] leading-relaxed">View assigned participants → Log session notes → Update goal progress → Schedule follow-ups</p>
-          </div>
-          <div class="bg-white/5 rounded-xl p-3 text-center border border-white/5">
-            <div class="text-sm font-semibold text-mint-400 mb-1">👤 Participant Flow</div>
-            <p class="text-white/50 text-[9px] leading-relaxed">View personal goals → Access session materials → Track progress → Submit feedback</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Content Phase -->
-      <div class="w-full mt-4">
-        <div class="text-center mb-8">
-          <span class="font-mono text-[11px] tracking-[2px] text-mint-400 bg-mint-400/10 px-3 py-1 rounded-full inline-block mb-3">Content Phase</span>
-          <h2 class="text-2xl md:text-3xl font-semibold tracking-tight bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
-            Research insights & business impact
-          </h2>
-          <div class="w-12 h-0.5 bg-mint-400 mx-auto mt-3 rounded-full"></div>
-        </div>
-
-        <!-- User Research Findings -->
-        <div class="grid md:grid-cols-3 gap-3 my-6">
-          <div class="bg-white/5 rounded-xl p-3 flex gap-2 items-start">
-            <div class="text-xl">📋</div>
-            <div><div class="text-xs font-semibold text-mint-400">Administrative overload</div><p class="text-white/50 text-[10px] leading-relaxed mt-0.5">HR teams spent 12+ hours weekly on manual participant tracking</p></div>
-          </div>
-          <div class="bg-white/5 rounded-xl p-3 flex gap-2 items-start">
-            <div class="text-xl">🎯</div>
-            <div><div class="text-xs font-semibold text-mint-400">Goal fragmentation</div><p class="text-white/50 text-[10px] leading-relaxed mt-0.5">Goals tracked across spreadsheets, emails, and notes</p></div>
-          </div>
-          <div class="bg-white/5 rounded-xl p-3 flex gap-2 items-start">
-            <div class="text-xl">💰</div>
-            <div><div class="text-xs font-semibold text-mint-400">Payment complexity</div><p class="text-white/50 text-[10px] leading-relaxed mt-0.5">Multiple schedules created reconciliation nightmares</p></div>
-          </div>
-        </div>
-
-        <!-- Solutions -->
-        <div class="space-y-2 my-6">
-          <div class="flex gap-3 bg-white/5 rounded-xl p-3">
-            <span class="text-[11px] font-bold text-mint-400 bg-mint-400/10 px-2 py-0.5 rounded-full h-fit">01</span>
-            <div><strong class="text-xs text-white">Centralized participant dashboard</strong><p class="text-white/50 text-[10px] mt-0.5">Bulk CSV import/export, role-based access controls, real-time participant rosters</p></div>
-          </div>
-          <div class="flex gap-3 bg-white/5 rounded-xl p-3">
-            <span class="text-[11px] font-bold text-mint-400 bg-mint-400/10 px-2 py-0.5 rounded-full h-fit">02</span>
-            <div><strong class="text-xs text-white">Integrated goal tracking</strong><p class="text-white/50 text-[10px] mt-0.5">OKR-aligned framework with milestone tracking and visual progress indicators</p></div>
-          </div>
-          <div class="flex gap-3 bg-white/5 rounded-xl p-3">
-            <span class="text-[11px] font-bold text-mint-400 bg-mint-400/10 px-2 py-0.5 rounded-full h-fit">03</span>
-            <div><strong class="text-xs text-white">Unified reporting engine</strong><p class="text-white/50 text-[10px] mt-0.5">Customizable templates for ROI analysis and completion metrics</p></div>
-          </div>
-          <div class="flex gap-3 bg-white/5 rounded-xl p-3">
-            <span class="text-[11px] font-bold text-mint-400 bg-mint-400/10 px-2 py-0.5 rounded-full h-fit">04</span>
-            <div><strong class="text-xs text-white">Flexible payment system</strong><p class="text-white/50 text-[10px] mt-0.5">Support for multiple billing models with automated invoicing</p></div>
-          </div>
-        </div>
-
-        <!-- Usability Testing -->
-        <div class="bg-white/5 rounded-xl p-4 my-6">
-          <h4 class="font-semibold text-amber-400 text-sm mb-2">🧪 Usability testing & iterations</h4>
-          <ul class="space-y-1.5">
-            <li class="text-white/60 text-[10px] flex items-start gap-1.5"><span class="text-mint-400">→</span> <strong>Round 1:</strong> Admins struggled with bulk actions → redesigned navigation</li>
-            <li class="text-white/60 text-[10px] flex items-start gap-1.5"><span class="text-mint-400">→</span> <strong>Round 2:</strong> Coaches wanted faster note entry → added quick-note modal</li>
-            <li class="text-white/60 text-[10px] flex items-start gap-1.5"><span class="text-mint-400">→</span> <strong>Round 3:</strong> Participants requested progress comparisons → added peer benchmark</li>
-          </ul>
-        </div>
-
-        <!-- Metrics -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 my-6">
-          <div class="text-center bg-white/5 rounded-xl p-3 border border-white/5">
-            <div class="text-lg font-bold text-amber-400">68%</div>
-            <div class="text-[8px] text-white/40">Reduction in admin time</div>
-          </div>
-          <div class="text-center bg-white/5 rounded-xl p-3 border border-white/5">
-            <div class="text-lg font-bold text-amber-400">2.5x</div>
-            <div class="text-[8px] text-white/40">Faster report generation</div>
-          </div>
-          <div class="text-center bg-white/5 rounded-xl p-3 border border-white/5">
-            <div class="text-lg font-bold text-amber-400">94%</div>
-            <div class="text-[8px] text-white/40">User satisfaction (SUS)</div>
-          </div>
-          <div class="text-center bg-white/5 rounded-xl p-3 border border-white/5">
-            <div class="text-lg font-bold text-amber-400">100%</div>
-            <div class="text-[8px] text-white/40">Payment accuracy</div>
-          </div>
-        </div>
-
-        <!-- Testimonial -->
-        <div class="bg-gradient-to-r from-mint-400/5 to-transparent rounded-2xl p-6 border-l-4 border-mint-400 my-6">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4ECDC4" stroke-width="1.6" class="mb-3">
-            <path d="M10 11H6C5.46957 11 4.96086 10.7893 4.58579 10.4142C4.21071 10.0391 4 9.53043 4 9V7C4 6.46957 4.21071 5.96086 4.58579 5.58579C4.96086 5.21071 5.46957 5 6 5H8C8.53043 5 9.03914 5.21071 9.41421 5.58579C9.78929 5.96086 10 6.46957 10 7V15C10 15.7956 9.68393 16.5587 9.12132 17.1213C8.55871 17.6839 7.79565 18 7 18H4"/>
-            <path d="M20 11H16C15.4696 11 14.9609 10.7893 14.5858 10.4142C14.2107 10.0391 14 9.53043 14 9V7C14 6.46957 14.2107 5.96086 14.5858 5.58579C14.9609 5.21071 15.4696 5 16 5H18C18.5304 5 19.0391 5.21071 19.4142 5.58579C19.7893 5.96086 20 6.46957 20 7V15C20 15.7956 19.6839 16.5587 19.1213 17.1213C18.5587 17.6839 17.7956 18 17 18H14"/>
-          </svg>
-          <p class="text-white/70 italic text-sm leading-relaxed">
-            "Coachy transformed our L&D operations. What used to take our team two full days each week 
-            now takes about 3 hours. The goal tracking feature has improved coaching outcomes dramatically."
-          </p>
-          <p class="text-mint-400 text-xs font-mono mt-3">— Sarah Chen, Director of Learning & Development</p>
-        </div>
-
-        <!-- Design System -->
-        <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-5 border border-white/5 my-6">
-          <h4 class="font-semibold text-amber-400 mb-4 text-sm">🎨 Design system snapshot</h4>
-          <div class="flex flex-wrap justify-center gap-4 mb-5">
-            <div class="text-center"><div class="w-12 h-12 rounded-2xl bg-[#0A0C12] border border-white/10 mb-1"></div><span class="text-[9px] text-white/40">#0A0C12</span></div>
-            <div class="text-center"><div class="w-12 h-12 rounded-2xl bg-[#161B26] border border-white/10 mb-1"></div><span class="text-[9px] text-white/40">#161B26</span></div>
-            <div class="text-center"><div class="w-12 h-12 rounded-2xl bg-[#4ECDC4] border border-white/10 mb-1"></div><span class="text-[9px] text-white/40">#4ECDC4</span></div>
-            <div class="text-center"><div class="w-12 h-12 rounded-2xl bg-[#FF6B6B] border border-white/10 mb-1"></div><span class="text-[9px] text-white/40">#FF6B6B</span></div>
-          </div>
-          <div class="border-t border-white/10 pt-4">
-            <div class="text-xs font-mono text-white/60 mb-2">Typography — Inter</div>
-            <div class="text-[10px] text-white/40">Headings: 32px / Bold · Clean hierarchy</div>
-            <div class="text-[10px] text-white/40">Body: 15px / Regular · 1.6 leading</div>
-          </div>
-        </div>
-
-        <!-- Challenges & Learnings -->
-        <div class="my-6">
-          <h4 class="font-semibold text-amber-400 mb-3 text-sm">📌 Challenges & key learnings</h4>
-          <ul class="space-y-2">
-            <li class="text-white/60 text-xs flex items-start gap-2"><span class="text-mint-400">▹</span> <strong>Role complexity:</strong> Designing for three personas required extensive user journey mapping</li>
-            <li class="text-white/60 text-xs flex items-start gap-2"><span class="text-mint-400">▹</span> <strong>Data privacy:</strong> Implemented granular permission layers at API and UI level</li>
-            <li class="text-white/60 text-xs flex items-start gap-2"><span class="text-mint-400">▹</span> <strong>Payment flexibility:</strong> Built dynamic pricing engine supporting multiple billing models</li>
-            <li class="text-white/60 text-xs flex items-start gap-2"><span class="text-mint-400">▹</span> <strong>Adoption strategy:</strong> Interactive onboarding reduced support tickets by 45%</li>
-          </ul>
-        </div>
-
-        <!-- Future Roadmap -->
-        <div class="bg-mint-400/5 rounded-2xl p-5 border border-mint-400/15 my-6">
-          <h4 class="text-mint-400 font-semibold text-sm mb-2">🗺️ Future roadmap</h4>
-          <p class="text-white/60 text-xs leading-relaxed">
-            Phase 2 includes AI-powered coach-participant matching based on personality and skill gaps, 
-            integration with Zoom/Teams for automatic session recording, and advanced analytics dashboards 
-            with predictive completion modeling. Mobile apps for iOS and Android planned for Q2 2026.
-          </p>
-        </div>
-
-        <!-- Conclusion -->
-        <div class="bg-mint-400/5 rounded-2xl p-6 text-center border border-mint-400/15 my-6">
-          <p class="text-white/70 text-sm leading-relaxed">
-            Coachy successfully addresses the operational pain points of corporate coaching programs 
-            through thoughtful UX design, extensive user research, and robust feature development. 
-            By serving three distinct user personas with tailored interfaces while maintaining a unified 
-            data model, we delivered a solution that reduces administrative overhead, improves goal 
-            tracking visibility, and streamlines payment reconciliation.
-          </p>
-        </div>
-      </div>
-
-      <!-- Case Navigation -->
-      <div class="flex flex-col md:flex-row justify-between items-center gap-4 w-full mt-10 pt-5 border-t border-white/5">
-        <a href="index.html" class="inline-flex items-center gap-2 text-white/50 font-mono text-[11px] transition-all duration-300 hover:text-mint-400 hover:gap-3">
-          <span class="text-sm">←</span> All Projects
+        <!-- Back link -->
+        <a href="index.html" class="inline-flex items-center gap-2 text-white/50 font-mono text-xs mb-10 transition-all duration-300 hover:text-mint-400 hover:gap-3 group">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M15 18L9 12L15 6" />
+            </svg>
+            <span class="tracking-wide">Back to portfolio</span>
         </a>
-        <a href="tabeebi.html" class="inline-flex items-center gap-2 text-white/50 font-mono text-[11px] transition-all duration-300 hover:text-mint-400 hover:gap-3">
-          Next Case Study <span class="text-sm">→</span>
-        </a>
-      </div>
+
+        <div class="flex flex-col items-center">
+
+            <!-- ========== HERO SECTION ========== -->
+            <div class="text-center mb-10" style="animation: fadeInUp 0.5s ease-out forwards;">
+                <div class="flex items-center justify-center gap-2 mb-4">
+                    <span class="font-mono text-[11px] bg-mint-400/10 text-mint-400 px-2 py-0.5 rounded-full border border-mint-400/20">03</span>
+                    <span class="font-mono text-[11px] tracking-wider text-white/40 uppercase">Case Study</span>
+                </div>
+
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-3 bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
+                    COACHY
+                </h1>
+
+                <p class="text-white/60 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
+                    Coaching management system that simplifies participant management, improves administrative efficiency, and enhances goal tracking, addressing the challenges of handling diverse needs, reporting, and payments.
+                </p>
+
+                <!-- My Roles -->
+                <div class="mt-5 inline-flex flex-wrap items-center justify-center gap-2 bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full border border-white/5">
+                    <span class="text-[10px] font-mono text-white/40 uppercase tracking-wider">My Roles:</span>
+                    <span class="text-[11px] font-mono text-mint-400">Lead Designer/Researcher</span>
+                    <span class="text-white/30">·</span>
+                    <span class="text-[11px] font-mono text-white/60">Wireframing</span>
+                    <span class="text-white/30">·</span>
+                    <span class="text-[11px] font-mono text-white/60">UI Design/Prototyping</span>
+                </div>
+
+                <!-- Tags -->
+                <div class="flex flex-wrap justify-center gap-2 mt-4">
+                    <span class="text-[11px] font-mono text-white/60 bg-white/5 backdrop-blur-sm px-3 py-1 rounded-full border border-white/5">User Interviews</span>
+                    <span class="text-[11px] font-mono text-white/60 bg-white/5 backdrop-blur-sm px-3 py-1 rounded-full border border-white/5">UI Design</span>
+                    <span class="text-[11px] font-mono text-white/60 bg-white/5 backdrop-blur-sm px-3 py-1 rounded-full border border-white/5">Usability</span>
+                    <span class="text-[11px] font-mono text-white/60 bg-white/5 backdrop-blur-sm px-3 py-1 rounded-full border border-white/5">SaaS</span>
+                    <span class="text-[11px] font-mono text-white/60 bg-white/5 backdrop-blur-sm px-3 py-1 rounded-full border border-white/5">Product Strategy</span>
+                </div>
+            </div>
+
+            <!-- ========== NAVIGATION PREVIEW (from PNG) ========== -->
+            <div class="w-full bg-white/5 backdrop-blur-sm rounded-2xl p-4 md:p-5 border border-white/5 mb-10 card-hover" style="animation: fadeInUp 0.5s ease-out 0.08s forwards; opacity: 0;">
+                <p class="text-[10px] font-mono text-white/30 uppercase tracking-wider mb-3 text-center">App Navigation</p>
+                <div class="flex flex-wrap justify-center gap-1.5 md:gap-2">
+                    <span class="nav-pill text-[10px] md:text-[11px] font-mono text-white/70 bg-white/5 px-3 py-1.5 rounded-full border border-white/5 cursor-default">Home</span>
+                    <span class="nav-pill text-[10px] md:text-[11px] font-mono text-white/70 bg-white/5 px-3 py-1.5 rounded-full border border-white/5 cursor-default">Sessions</span>
+                    <span class="nav-pill text-[10px] md:text-[11px] font-mono text-white/70 bg-white/5 px-3 py-1.5 rounded-full border border-white/5 cursor-default">Coaching Resources</span>
+                    <span class="nav-pill text-[10px] md:text-[11px] font-mono text-white/70 bg-white/5 px-3 py-1.5 rounded-full border border-white/5 cursor-default">Clients</span>
+                    <span class="nav-pill text-[10px] md:text-[11px] font-mono text-white/70 bg-white/5 px-3 py-1.5 rounded-full border border-white/5 cursor-default">Visibility</span>
+                    <span class="nav-pill text-[10px] md:text-[11px] font-mono text-white/70 bg-white/5 px-3 py-1.5 rounded-full border border-white/5 cursor-default">Rating & Reviews</span>
+                    <span class="nav-pill text-[10px] md:text-[11px] font-mono text-white/70 bg-white/5 px-3 py-1.5 rounded-full border border-white/5 cursor-default">Chat</span>
+                    <span class="nav-pill text-[10px] md:text-[11px] font-mono text-white/70 bg-white/5 px-3 py-1.5 rounded-full border border-white/5 cursor-default">Reports</span>
+                    <span class="nav-pill text-[10px] md:text-[11px] font-mono text-white/70 bg-white/5 px-3 py-1.5 rounded-full border border-white/5 cursor-default">Selling & Payment</span>
+                </div>
+            </div>
+
+            <!-- ========== WELCOME COACH + STATS (from PNG) ========== -->
+            <div class="w-full grid md:grid-cols-4 gap-3 mb-10" style="animation: fadeInUp 0.5s ease-out 0.12s forwards; opacity: 0;">
+                <div class="md:col-span-4 bg-white/5 backdrop-blur-sm rounded-2xl px-4 py-3 border border-white/5 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-mint-400/20 flex items-center justify-center flex-shrink-0">
+                        <span class="text-lg">👋</span>
+                    </div>
+                    <div>
+                        <p class="text-sm font-semibold text-white">Welcome Coach</p>
+                        <p class="text-[10px] text-white/40 font-mono">Your coaching dashboard is ready</p>
+                    </div>
+                    <div class="ml-auto">
+                        <span class="text-[10px] font-mono bg-green-400/20 text-green-400 px-2.5 py-1 rounded-full border border-green-400/30">Status: Open</span>
+                    </div>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/5 text-center stat-badge card-hover">
+                    <div class="text-2xl md:text-3xl font-bold text-mint-400">42</div>
+                    <div class="text-[10px] text-white/40 font-mono">Total Chats</div>
+                    <div class="text-[11px] text-white/60 mt-0.5">(+20 new)</div>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/5 text-center card-hover">
+                    <div class="text-2xl md:text-3xl font-bold text-mint-400">10</div>
+                    <div class="text-[10px] text-white/40 font-mono">Upcoming Sessions</div>
+                    <div class="text-[11px] text-white/60 mt-0.5">(+5 this week)</div>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/5 text-center card-hover">
+                    <div class="text-2xl md:text-3xl font-bold text-mint-400">10</div>
+                    <div class="text-[10px] text-white/40 font-mono">My Chats</div>
+                    <div class="text-[11px] text-white/60 mt-0.5">(+5 active)</div>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/5 text-center card-hover">
+                    <div class="text-2xl md:text-3xl font-bold text-green-400">Open</div>
+                    <div class="text-[10px] text-white/40 font-mono">Status</div>
+                    <div class="text-[11px] text-white/60 mt-0.5">Available Now</div>
+                </div>
+            </div>
+
+            <!-- ========== CLIENT LIST PREVIEW (from PNG) ========== -->
+            <div class="w-full bg-white/5 backdrop-blur-sm rounded-2xl p-5 border border-white/5 mb-10 card-hover" style="animation: fadeInUp 0.5s ease-out 0.16s forwards; opacity: 0;">
+                <p class="text-[10px] font-mono text-white/30 uppercase tracking-wider mb-4">Client List</p>
+                <div class="flex flex-wrap items-center gap-4 md:gap-8">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-mint-400/30 to-blue-400/20 flex items-center justify-center text-sm font-semibold text-mint-400">JD</div>
+                        <div>
+                            <p class="text-sm font-medium text-white">Jane Doe</p>
+                            <p class="text-[10px] text-white/40 font-mono">Client Name</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-400"></span>
+                        <span class="text-[11px] font-mono text-white/60">Status: <span class="text-green-400">Active</span></span>
+                    </div>
+                    <div>
+                        <span class="text-[11px] font-mono text-white/40">Type:</span>
+                        <span class="text-[11px] font-mono text-white/70 ml-1">Individual</span>
+                    </div>
+                    <div>
+                        <span class="text-[11px] font-mono text-white/40">Location:</span>
+                        <span class="text-[11px] font-mono text-white/70 ml-1">San Francisco, CA</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== TEAM & TIMELINE (from PNG) ========== -->
+            <div class="w-full grid md:grid-cols-2 gap-4 mb-10" style="animation: fadeInUp 0.5s ease-out 0.2s forwards; opacity: 0;">
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-5 border border-white/5 card-hover">
+                    <p class="text-[10px] font-mono text-white/30 uppercase tracking-wider mb-3">Team</p>
+                    <div class="flex flex-wrap gap-3">
+                        <div class="bg-white/5 rounded-xl px-3 py-2 text-center border border-white/5">
+                            <div class="text-lg font-bold text-mint-400">2</div>
+                            <div class="text-[9px] text-white/40 font-mono">Product Managers</div>
+                        </div>
+                        <div class="bg-white/5 rounded-xl px-3 py-2 text-center border border-white/5">
+                            <div class="text-lg font-bold text-mint-400">1</div>
+                            <div class="text-[9px] text-white/40 font-mono">Product Designer</div>
+                        </div>
+                        <div class="bg-white/5 rounded-xl px-3 py-2 text-center border border-white/5">
+                            <div class="text-lg font-bold text-mint-400">5</div>
+                            <div class="text-[9px] text-white/40 font-mono">Engineers & More</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-5 border border-white/5 card-hover flex flex-col justify-center items-center">
+                    <p class="text-[10px] font-mono text-white/30 uppercase tracking-wider mb-2">Timeline</p>
+                    <p class="text-xl md:text-2xl font-bold text-mint-400 font-mono">Aug 2023 – Jun 2024</p>
+                    <p class="text-[10px] text-white/40 mt-1">11 months · Discovery to Launch</p>
+                </div>
+            </div>
+
+            <!-- ========== SECTION DIVIDER ========== -->
+            <hr class="section-divider w-full my-4">
+
+            <!-- ========== PROJECT BRIEF (from PNG) ========== -->
+            <div class="w-full mb-10" style="animation: fadeInUp 0.5s ease-out 0.24s forwards; opacity: 0;">
+                <div class="text-center mb-6">
+                    <span class="font-mono text-[11px] tracking-[2px] text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full inline-block mb-3">Project Brief</span>
+                    <h2 class="text-2xl md:text-3xl font-semibold tracking-tight bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
+                        Understanding the challenge
+                    </h2>
+                    <div class="w-12 h-0.5 bg-amber-400 mx-auto mt-3 rounded-full"></div>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/5 card-hover">
+                    <p class="text-white/70 leading-relaxed text-sm md:text-base">
+                        The corporate coaching program management enhancement is designed to streamline and optimize the management of corporate coaching programs. This feature aims to address the complexities involved in managing multiple participants, coaches, and administrative tasks within corporate coaching environments. By providing a more intuitive and efficient system, this enhancement will support better <strong class="text-mint-400">Edge and Driving Increased Revenue</strong>.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ========== RISKS (from PNG) ========== -->
+            <div class="w-full mb-10" style="animation: fadeInUp 0.5s ease-out 0.28s forwards; opacity: 0;">
+                <div class="text-center mb-6">
+                    <span class="font-mono text-[11px] tracking-[2px] text-red-400 bg-red-400/10 px-3 py-1 rounded-full inline-block mb-3">Risks</span>
+                    <h2 class="text-2xl md:text-3xl font-semibold tracking-tight bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
+                        Potential risks & mitigation
+                    </h2>
+                    <div class="w-12 h-0.5 bg-red-400 mx-auto mt-3 rounded-full"></div>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/5 card-hover">
+                    <p class="text-white/70 leading-relaxed text-sm md:text-base">
+                        Potential risks include the complexity of implementing a new system that integrates seamlessly with existing processes and data. There is also a risk of resistance to change from users accustomed to the current system. <strong class="text-amber-400">Ensuring robust training and support will be essential to mitigate these risks.</strong>
+                    </p>
+                </div>
+            </div>
+
+            <!-- ========== USER PERSONAS (from PNG - 3 personas x 6 each) ========== -->
+            <div class="w-full mb-10" style="animation: fadeInUp 0.5s ease-out 0.32s forwards; opacity: 0;">
+                <div class="text-center mb-6">
+                    <span class="font-mono text-[11px] tracking-[2px] text-mint-400 bg-mint-400/10 px-3 py-1 rounded-full inline-block mb-3">User Persona</span>
+                    <h2 class="text-2xl md:text-3xl font-semibold tracking-tight bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
+                        Three core user personas
+                    </h2>
+                    <div class="w-12 h-0.5 bg-mint-400 mx-auto mt-3 rounded-full"></div>
+                </div>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <!-- Admin Persona -->
+                    <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-5 border border-white/5 card-hover">
+                        <div class="text-center mb-3">
+                            <div class="text-3xl mb-2">👔</div>
+                            <h3 class="text-lg font-semibold text-white">Admin</h3>
+                            <p class="text-[10px] text-white/40 font-mono">6 personas identified</p>
+                        </div>
+                        <div class="space-y-1.5">
+                            <div class="bg-white/5 rounded-lg px-3 py-2 text-[10px] text-white/60">HR Operations Lead</div>
+                            <div class="bg-white/5 rounded-lg px-3 py-2 text-[10px] text-white/60">L&D Coordinator</div>
+                            <div class="bg-white/5 rounded-lg px-3 py-2 text-[10px] text-white/60">Program Administrator</div>
+                            <div class="bg-white/5 rounded-lg px-3 py-2 text-[10px] text-white/60">Finance Manager</div>
+                            <div class="bg-white/5 rounded-lg px-3 py-2 text-[10px] text-white/60">Compliance Officer</div>
+                            <div class="bg-white/5 rounded-lg px-3 py-2 text-[10px] text-white/60">Department Head</div>
+                        </div>
+                    </div>
+                    <!-- Coach Persona -->
+                    <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-5 border border-white/5 card-hover">
+                        <div class="text-center mb-3">
+                            <div class="text-3xl mb-2">🎓</div>
+                            <h3 class="text-lg font-semibold text-white">Coach</h3>
+                            <p class="text-[10px] text-white/40 font-mono">6 personas identified</p>
+                        </div>
+                        <div class="space-y-1.5">
+                            <div class="bg-white/5 rounded-lg px-3 py-2 text-[10px] text-white/60">Executive Coach</div>
+                            <div class="bg-white/5 rounded-lg px-3 py-2 text-[10px] text-white/60">Leadership Coach</div>
+                            <div class="bg-white/5 rounded-lg px-3 py-2 text-[10px] text-white/60">Career Coach</div>
+                            <div class="bg-white/5 rounded-lg px-3 py-2 text-[10px] text-white/60">Performance Coach</div>
+                            <div class="bg-white/5 rounded-lg px-3 py-2 text-[10px] text-white/60">Team Coach</div>
+                            <div class="bg-white/5 rounded-lg px-3 py-2 text-[10px] text-white/60">Wellness Coach</div>
+                        </div>
+                    </div>
+                    <!-- Sales Persona -->
+                    <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-5 border border-white/5 card-hover">
+                        <div class="text-center mb-3">
+                            <div class="text-3xl mb-2">💼</div>
+                            <h3 class="text-lg font-semibold text-white">Sales</h3>
+                            <p class="text-[10px] text-white/40 font-mono">6 personas identified</p>
+                        </div>
+                        <div class="space-y-1.5">
+                            <div class="bg-white/5 rounded-lg px-3 py-2 text-[10px] text-white/60">Account Executive</div>
+                            <div class="bg-white/5 rounded-lg px-3 py-2 text-[10px] text-white/60">Sales Manager</div>
+                            <div class="bg-white/5 rounded-lg px-3 py-2 text-[10px] text-white/60">Business Development</div>
+                            <div class="bg-white/5 rounded-lg px-3 py-2 text-[10px] text-white/60">Client Success Lead</div>
+                            <div class="bg-white/5 rounded-lg px-3 py-2 text-[10px] text-white/60">Partnerships Manager</div>
+                            <div class="bg-white/5 rounded-lg px-3 py-2 text-[10px] text-white/60">Revenue Operations</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== GOAL OF THE STUDY (from PNG) ========== -->
+            <div class="w-full mb-10" style="animation: fadeInUp 0.5s ease-out 0.36s forwards; opacity: 0;">
+                <div class="text-center mb-6">
+                    <span class="font-mono text-[11px] tracking-[2px] text-blue-400 bg-blue-400/10 px-3 py-1 rounded-full inline-block mb-3">Goal of the Study</span>
+                    <h2 class="text-2xl md:text-3xl font-semibold tracking-tight bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
+                        Research objectives
+                    </h2>
+                    <div class="w-12 h-0.5 bg-blue-400 mx-auto mt-3 rounded-full"></div>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/5 card-hover">
+                    <p class="text-white/70 leading-relaxed text-sm md:text-base">
+                        This study was initiated to explore the complexities and requirements of <strong class="text-mint-400">Managing Corporate Coaching Programs Effectively</strong>. The Primary Unknowns addressed include the <strong class="text-amber-400">Optimal Management Structure For Large-Scale Corporate Programs</strong>, the <strong class="text-amber-400">Integration of Financial And Administrative Roles</strong>; and the <strong class="text-amber-400">Customization of Coaching Experiences To Meet Diverse Corporate Needs</strong>. This Research Aims To Inform Decision On How To Streamline The Management Of Corporate Coaching Programs, Enhance Participant Engagement, And Ensure Alignment With Organizational Objectives.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ========== SECTION DIVIDER ========== -->
+            <hr class="section-divider w-full my-4">
+
+            <!-- ========== DASHBOARD DESIGNS (from PNG) ========== -->
+            <div class="w-full mb-10" style="animation: fadeInUp 0.5s ease-out 0.4s forwards; opacity: 0;">
+                <div class="text-center mb-6">
+                    <span class="font-mono text-[11px] tracking-[2px] text-mint-400 bg-mint-400/10 px-3 py-1 rounded-full inline-block mb-3">Dashboard Designs</span>
+                    <h2 class="text-2xl md:text-3xl font-semibold tracking-tight bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
+                        Role-based dashboard experiences
+                    </h2>
+                    <div class="w-12 h-0.5 bg-mint-400 mx-auto mt-3 rounded-full"></div>
+                    <p class="text-white/50 text-xs md:text-sm mt-3 max-w-xl mx-auto">
+                        Three tailored dashboards designed from extensive user research, each optimized for distinct workflows and priorities.
+                    </p>
+                </div>
+
+                <!-- Three Dashboard Cards -->
+                <div class="grid md:grid-cols-3 gap-5">
+                    <!-- Admin Dashboard -->
+                    <div class="bg-[#0E121F] rounded-2xl overflow-hidden shadow-2xl border border-white/10 card-hover">
+                        <div class="bg-[#131A28] px-4 py-3 text-center border-b border-white/5">
+                            <span class="text-[11px] font-mono text-mint-400 font-semibold tracking-wide">Admin Dashboard</span>
+                        </div>
+                        <div class="bg-[#080C16] p-4 min-h-[280px]">
+                            <div class="flex gap-2 mb-3">
+                                <div class="bg-white/5 rounded-xl p-2 text-center flex-1">
+                                    <div class="text-sm font-bold text-mint-400">128</div>
+                                    <div class="text-[8px] text-white/40">Participants</div>
+                                </div>
+                                <div class="bg-white/5 rounded-xl p-2 text-center flex-1">
+                                    <div class="text-sm font-bold text-mint-400">12</div>
+                                    <div class="text-[8px] text-white/40">Coaches</div>
+                                </div>
+                                <div class="bg-white/5 rounded-xl p-2 text-center flex-1">
+                                    <div class="text-sm font-bold text-mint-400">87%</div>
+                                    <div class="text-[8px] text-white/40">Completion</div>
+                                </div>
+                            </div>
+                            <div class="space-y-2 mb-3">
+                                <div class="bg-white/5 rounded-lg p-2 text-[9px] text-white/70">👤 Marketing Team · 24 members</div>
+                                <div class="bg-white/5 rounded-lg p-2 text-[9px] text-white/70">👤 Sales Team · 18 members</div>
+                                <div class="bg-white/5 rounded-lg p-2 text-[9px] text-white/70">👤 Engineering · 32 members</div>
+                            </div>
+                            <div class="border border-dashed border-mint-400/40 rounded-lg p-2 text-center text-[9px] text-mint-400">+ Bulk Import Participants</div>
+                        </div>
+                    </div>
+
+                    <!-- Coach Workspace -->
+                    <div class="bg-[#0E121F] rounded-2xl overflow-hidden shadow-2xl border border-white/10 card-hover">
+                        <div class="bg-[#131A28] px-4 py-3 text-center border-b border-white/5">
+                            <span class="text-[11px] font-mono text-mint-400 font-semibold tracking-wide">Coach Workspace</span>
+                        </div>
+                        <div class="bg-[#080C16] p-4 min-h-[280px]">
+                            <div class="space-y-3 mb-3">
+                                <div>
+                                    <div class="text-[10px] font-medium mb-1 text-white/80">Leadership skills</div>
+                                    <div class="h-1.5 bg-white/10 rounded-full overflow-hidden">
+                                        <div class="h-full bg-mint-400 rounded-full" style="width:65%"></div>
+                                    </div>
+                                    <div class="text-right text-[8px] text-white/40">65%</div>
+                                </div>
+                                <div>
+                                    <div class="text-[10px] font-medium mb-1 text-white/80">Communication</div>
+                                    <div class="h-1.5 bg-white/10 rounded-full overflow-hidden">
+                                        <div class="h-full bg-mint-400 rounded-full" style="width:80%"></div>
+                                    </div>
+                                    <div class="text-right text-[8px] text-white/40">80%</div>
+                                </div>
+                            </div>
+                            <div class="bg-white/5 rounded-lg p-2.5">
+                                <div class="text-[9px] text-white/70">📝 Session notes</div>
+                                <div class="text-[8px] text-white/40 mt-1">Q3 review completed · Action items defined</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Participant Portal -->
+                    <div class="bg-[#0E121F] rounded-2xl overflow-hidden shadow-2xl border border-white/10 card-hover">
+                        <div class="bg-[#131A28] px-4 py-3 text-center border-b border-white/5">
+                            <span class="text-[11px] font-mono text-mint-400 font-semibold tracking-wide">Participant Portal</span>
+                        </div>
+                        <div class="bg-[#080C16] p-4 min-h-[280px]">
+                            <div class="bg-white/5 rounded-lg p-2.5 text-center mb-3">
+                                <div class="text-[9px] text-white/70">📅 Next session: Tomorrow, 2:00 PM</div>
+                            </div>
+                            <div class="space-y-2 mb-3">
+                                <div class="bg-white/5 rounded-full px-3 py-1.5 text-center text-[9px] text-white/70">🏆 Improve public speaking</div>
+                                <div class="bg-white/5 rounded-full px-3 py-1.5 text-center text-[9px] text-white/70">📈 Increase sales closing rate</div>
+                                <div class="bg-white/5 rounded-full px-3 py-1.5 text-center text-[9px] text-white/70">💡 Develop strategic thinking</div>
+                            </div>
+                            <div class="bg-mint-400/10 rounded-lg p-2.5 text-center text-[9px] text-mint-400">✅ Payment: Up to date</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== DESIGN APPROACH & USER FLOWS ========== -->
+            <div class="w-full mb-10" style="animation: fadeInUp 0.5s ease-out 0.44s forwards; opacity: 0;">
+                <div class="text-center mb-6">
+                    <span class="font-mono text-[11px] tracking-[2px] text-mint-400 bg-mint-400/10 px-3 py-1 rounded-full inline-block mb-3">Design Approach</span>
+                    <h2 class="text-2xl md:text-3xl font-semibold tracking-tight bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
+                        User-centered design methodology
+                    </h2>
+                    <div class="w-12 h-0.5 bg-mint-400 mx-auto mt-3 rounded-full"></div>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/5 card-hover mb-6">
+                    <p class="text-white/70 leading-relaxed text-sm md:text-base">
+                        We applied a user-centered design methodology rooted in extensive stakeholder interviews. Over 8 weeks, we conducted <strong class="text-mint-400">22 user interviews</strong> with HR leaders, certified coaches, and program participants across 5 organizations. Key insights revealed that administrators needed bulk operations and reporting, coaches wanted session notes and goal tracking, and participants craved visibility into their progress. The design solution centers on three tailored dashboards, role-based workflows, and a unified data model.
+                    </p>
+                </div>
+                <!-- User Flows -->
+                <div class="grid md:grid-cols-3 gap-3">
+                    <div class="bg-white/5 rounded-xl p-4 text-center border border-white/5 card-hover">
+                        <div class="text-sm font-semibold text-mint-400 mb-2">👔 Admin Flow</div>
+                        <p class="text-white/50 text-[10px] leading-relaxed">Import participants → Assign coaches → Track budgets → Generate reports</p>
+                    </div>
+                    <div class="bg-white/5 rounded-xl p-4 text-center border border-white/5 card-hover">
+                        <div class="text-sm font-semibold text-mint-400 mb-2">🎓 Coach Flow</div>
+                        <p class="text-white/50 text-[10px] leading-relaxed">View assigned participants → Log session notes → Update goal progress → Schedule follow-ups</p>
+                    </div>
+                    <div class="bg-white/5 rounded-xl p-4 text-center border border-white/5 card-hover">
+                        <div class="text-sm font-semibold text-mint-400 mb-2">💼 Participant Flow</div>
+                        <p class="text-white/50 text-[10px] leading-relaxed">View personal goals → Access session materials → Track progress → Submit feedback</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== SECTION DIVIDER ========== -->
+            <hr class="section-divider w-full my-4">
+
+            <!-- ========== RESEARCH INSIGHTS ========== -->
+            <div class="w-full mb-10" style="animation: fadeInUp 0.5s ease-out 0.48s forwards; opacity: 0;">
+                <div class="text-center mb-6">
+                    <span class="font-mono text-[11px] tracking-[2px] text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full inline-block mb-3">Research Insights</span>
+                    <h2 class="text-2xl md:text-3xl font-semibold tracking-tight bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
+                        Key findings from user research
+                    </h2>
+                    <div class="w-12 h-0.5 bg-amber-400 mx-auto mt-3 rounded-full"></div>
+                </div>
+                <div class="grid md:grid-cols-3 gap-3 mb-6">
+                    <div class="bg-white/5 rounded-xl p-4 flex gap-3 items-start card-hover">
+                        <div class="text-2xl flex-shrink-0">📋</div>
+                        <div>
+                            <div class="text-xs font-semibold text-mint-400">Administrative overload</div>
+                            <p class="text-white/50 text-[10px] leading-relaxed mt-1">HR teams spent 12+ hours weekly on manual participant tracking</p>
+                        </div>
+                    </div>
+                    <div class="bg-white/5 rounded-xl p-4 flex gap-3 items-start card-hover">
+                        <div class="text-2xl flex-shrink-0">🎯</div>
+                        <div>
+                            <div class="text-xs font-semibold text-mint-400">Goal fragmentation</div>
+                            <p class="text-white/50 text-[10px] leading-relaxed mt-1">Goals tracked across spreadsheets, emails, and physical notes</p>
+                        </div>
+                    </div>
+                    <div class="bg-white/5 rounded-xl p-4 flex gap-3 items-start card-hover">
+                        <div class="text-2xl flex-shrink-0">💰</div>
+                        <div>
+                            <div class="text-xs font-semibold text-mint-400">Payment complexity</div>
+                            <p class="text-white/50 text-[10px] leading-relaxed mt-1">Multiple billing schedules created reconciliation nightmares</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Solutions -->
+                <div class="space-y-2.5">
+                    <div class="flex gap-3 bg-white/5 rounded-xl p-4 card-hover">
+                        <span class="text-[11px] font-bold text-mint-400 bg-mint-400/10 px-2.5 py-1 rounded-full h-fit flex-shrink-0">01</span>
+                        <div>
+                            <strong class="text-xs text-white">Centralized participant dashboard</strong>
+                            <p class="text-white/50 text-[10px] mt-1">Bulk CSV import/export, role-based access controls, real-time participant rosters</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 bg-white/5 rounded-xl p-4 card-hover">
+                        <span class="text-[11px] font-bold text-mint-400 bg-mint-400/10 px-2.5 py-1 rounded-full h-fit flex-shrink-0">02</span>
+                        <div>
+                            <strong class="text-xs text-white">Integrated goal tracking</strong>
+                            <p class="text-white/50 text-[10px] mt-1">OKR-aligned framework with milestone tracking and visual progress indicators</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 bg-white/5 rounded-xl p-4 card-hover">
+                        <span class="text-[11px] font-bold text-mint-400 bg-mint-400/10 px-2.5 py-1 rounded-full h-fit flex-shrink-0">03</span>
+                        <div>
+                            <strong class="text-xs text-white">Unified reporting engine</strong>
+                            <p class="text-white/50 text-[10px] mt-1">Customizable templates for ROI analysis and completion metrics</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 bg-white/5 rounded-xl p-4 card-hover">
+                        <span class="text-[11px] font-bold text-mint-400 bg-mint-400/10 px-2.5 py-1 rounded-full h-fit flex-shrink-0">04</span>
+                        <div>
+                            <strong class="text-xs text-white">Flexible payment system</strong>
+                            <p class="text-white/50 text-[10px] mt-1">Support for multiple billing models with automated invoicing</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== USABILITY TESTING ========== -->
+            <div class="w-full mb-10" style="animation: fadeInUp 0.5s ease-out 0.52s forwards; opacity: 0;">
+                <div class="bg-white/5 rounded-2xl p-5 border border-white/5 card-hover">
+                    <h4 class="font-semibold text-amber-400 text-sm mb-3">🧪 Usability testing & iterations</h4>
+                    <ul class="space-y-2">
+                        <li class="text-white/60 text-[11px] flex items-start gap-2">
+                            <span class="text-mint-400 flex-shrink-0">→</span>
+                            <span><strong>Round 1:</strong> Admins struggled with bulk actions → redesigned navigation with contextual action bars</span>
+                        </li>
+                        <li class="text-white/60 text-[11px] flex items-start gap-2">
+                            <span class="text-mint-400 flex-shrink-0">→</span>
+                            <span><strong>Round 2:</strong> Coaches wanted faster note entry → added quick-note modal with templates</span>
+                        </li>
+                        <li class="text-white/60 text-[11px] flex items-start gap-2">
+                            <span class="text-mint-400 flex-shrink-0">→</span>
+                            <span><strong>Round 3:</strong> Participants requested progress comparisons → added anonymous peer benchmark</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ========== METRICS ========== -->
+            <div class="w-full mb-10" style="animation: fadeInUp 0.5s ease-out 0.56s forwards; opacity: 0;">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <div class="text-center bg-white/5 rounded-2xl p-4 border border-white/5 card-hover">
+                        <div class="text-2xl font-bold text-amber-400">68%</div>
+                        <div class="text-[9px] text-white/40 mt-1">Reduction in admin time</div>
+                    </div>
+                    <div class="text-center bg-white/5 rounded-2xl p-4 border border-white/5 card-hover">
+                        <div class="text-2xl font-bold text-amber-400">2.5×</div>
+                        <div class="text-[9px] text-white/40 mt-1">Faster report generation</div>
+                    </div>
+                    <div class="text-center bg-white/5 rounded-2xl p-4 border border-white/5 card-hover">
+                        <div class="text-2xl font-bold text-amber-400">94%</div>
+                        <div class="text-[9px] text-white/40 mt-1">User satisfaction (SUS)</div>
+                    </div>
+                    <div class="text-center bg-white/5 rounded-2xl p-4 border border-white/5 card-hover">
+                        <div class="text-2xl font-bold text-amber-400">100%</div>
+                        <div class="text-[9px] text-white/40 mt-1">Payment accuracy</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== TESTIMONIAL ========== -->
+            <div class="w-full mb-10" style="animation: fadeInUp 0.5s ease-out 0.6s forwards; opacity: 0;">
+                <div class="bg-gradient-to-r from-mint-400/8 to-transparent rounded-2xl p-6 border-l-4 border-mint-400 card-hover">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4ECDC4" stroke-width="1.6" class="mb-3">
+                        <path d="M10 11H6C5.46957 11 4.96086 10.7893 4.58579 10.4142C4.21071 10.0391 4 9.53043 4 9V7C4 6.46957 4.21071 5.96086 4.58579 5.58579C4.96086 5.21071 5.46957 5 6 5H8C8.53043 5 9.03914 5.21071 9.41421 5.58579C9.78929 5.96086 10 6.46957 10 7V15C10 15.7956 9.68393 16.5587 9.12132 17.1213C8.55871 17.6839 7.79565 18 7 18H4" />
+                        <path d="M20 11H16C15.4696 11 14.9609 10.7893 14.5858 10.4142C14.2107 10.0391 14 9.53043 14 9V7C14 6.46957 14.2107 5.96086 14.5858 5.58579C14.9609 5.21071 15.4696 5 16 5H18C18.5304 5 19.0391 5.21071 19.4142 5.58579C19.7893 5.96086 20 6.46957 20 7V15C20 15.7956 19.6839 16.5587 19.1213 17.1213C18.5587 17.6839 17.7956 18 17 18H14" />
+                    </svg>
+                    <p class="text-white/70 italic text-sm leading-relaxed">
+                        "Coachy transformed our L&D operations. What used to take our team two full days each week now takes about 3 hours. The goal tracking feature has improved coaching outcomes dramatically."
+                    </p>
+                    <p class="text-mint-400 text-xs font-mono mt-3">— Sarah Chen, Director of Learning & Development</p>
+                </div>
+            </div>
+
+            <!-- ========== DESIGN SYSTEM ========== -->
+            <div class="w-full mb-10" style="animation: fadeInUp 0.5s ease-out 0.64s forwards; opacity: 0;">
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-5 border border-white/5 card-hover">
+                    <h4 class="font-semibold text-amber-400 mb-4 text-sm">🎨 Design system snapshot</h4>
+                    <div class="flex flex-wrap justify-center gap-4 mb-5">
+                        <div class="text-center">
+                            <div class="w-12 h-12 rounded-2xl bg-[#0A0C12] border border-white/10 mb-1"></div>
+                            <span class="text-[9px] text-white/40 font-mono">#0A0C12</span>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-12 h-12 rounded-2xl bg-[#161B26] border border-white/10 mb-1"></div>
+                            <span class="text-[9px] text-white/40 font-mono">#161B26</span>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-12 h-12 rounded-2xl bg-[#4ECDC4] border border-white/10 mb-1"></div>
+                            <span class="text-[9px] text-white/40 font-mono">#4ECDC4</span>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-12 h-12 rounded-2xl bg-[#FF6B6B] border border-white/10 mb-1"></div>
+                            <span class="text-[9px] text-white/40 font-mono">#FF6B6B</span>
+                        </div>
+                    </div>
+                    <div class="border-t border-white/10 pt-4">
+                        <div class="text-xs font-mono text-white/60 mb-2">Typography — Inter</div>
+                        <div class="text-[10px] text-white/40">Headings: 32px / Bold · Clean hierarchy</div>
+                        <div class="text-[10px] text-white/40">Body: 15px / Regular · 1.6 leading</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== CHALLENGES & LEARNINGS ========== -->
+            <div class="w-full mb-10" style="animation: fadeInUp 0.5s ease-out 0.68s forwards; opacity: 0;">
+                <h4 class="font-semibold text-amber-400 mb-4 text-sm">📌 Challenges & key learnings</h4>
+                <ul class="space-y-2.5">
+                    <li class="text-white/60 text-xs flex items-start gap-2">
+                        <span class="text-mint-400 flex-shrink-0">▹</span>
+                        <span><strong>Role complexity:</strong> Designing for three distinct personas required extensive user journey mapping and iterative validation</span>
+                    </li>
+                    <li class="text-white/60 text-xs flex items-start gap-2">
+                        <span class="text-mint-400 flex-shrink-0">▹</span>
+                        <span><strong>Data privacy:</strong> Implemented granular permission layers at both API and UI level to ensure compliance</span>
+                    </li>
+                    <li class="text-white/60 text-xs flex items-start gap-2">
+                        <span class="text-mint-400 flex-shrink-0">▹</span>
+                        <span><strong>Payment flexibility:</strong> Built a dynamic pricing engine supporting per-session, retainer, and outcome-based billing models</span>
+                    </li>
+                    <li class="text-white/60 text-xs flex items-start gap-2">
+                        <span class="text-mint-400 flex-shrink-0">▹</span>
+                        <span><strong>Adoption strategy:</strong> Interactive onboarding flows reduced support tickets by 45% within the first quarter</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- ========== FUTURE ROADMAP ========== -->
+            <div class="w-full mb-10" style="animation: fadeInUp 0.5s ease-out 0.72s forwards; opacity: 0;">
+                <div class="bg-mint-400/5 rounded-2xl p-5 border border-mint-400/20 card-hover">
+                    <h4 class="text-mint-400 font-semibold text-sm mb-2">🗺️ Future roadmap</h4>
+                    <p class="text-white/60 text-xs leading-relaxed">
+                        Phase 2 includes AI-powered coach-participant matching based on personality and skill gaps, integration with Zoom/Teams for automatic session recording, and advanced analytics dashboards with predictive completion modeling. Mobile apps for iOS and Android planned for Q2 2026.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ========== CONCLUSION ========== -->
+            <div class="w-full mb-10" style="animation: fadeInUp 0.5s ease-out 0.76s forwards; opacity: 0;">
+                <div class="bg-mint-400/5 rounded-2xl p-6 text-center border border-mint-400/20 card-hover">
+                    <p class="text-white/70 text-sm leading-relaxed">
+                        Coachy successfully addresses the operational pain points of corporate coaching programs through thoughtful UX design, extensive user research, and robust feature development. By serving three distinct user personas with tailored interfaces while maintaining a unified data model, we delivered a solution that reduces administrative overhead, improves goal tracking visibility, and streamlines payment reconciliation — ultimately <strong class="text-mint-400">driving increased revenue and better coaching outcomes</strong>.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ========== CASE NAVIGATION ========== -->
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 w-full mt-8 pt-6 border-t border-white/5">
+                <a href="index.html" class="inline-flex items-center gap-2 text-white/50 font-mono text-[11px] transition-all duration-300 hover:text-mint-400 hover:gap-3">
+                    <span class="text-sm">←</span> All Projects
+                </a>
+                <span class="text-white/20 font-mono text-[10px]">Case Study 03</span>
+                <a href="tabeebi.html" class="inline-flex items-center gap-2 text-white/50 font-mono text-[11px] transition-all duration-300 hover:text-mint-400 hover:gap-3">
+                    Next Case Study <span class="text-sm">→</span>
+                </a>
+            </div>
+
+        </div>
     </div>
-  </div>
 
 </body>
 </html>
