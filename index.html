@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verse — Portfolio</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+  <canvas id="bg-canvas"></canvas>
+
+  <div class="cursor" id="cursor"></div>
+
+  <div class="wrapper">
+    <section class="hero">
+      <nav class="nav-icons">
+        <div class="nav-icon active" data-panel="projects" aria-label="Projects">
+          <div class="dot"></div>
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          <span class="tooltip">Projects</span>
+        </div>
+        <div class="nav-icon" data-panel="skills" aria-label="Skills">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <span class="tooltip">Skills</span>
+        </div>
+        <div class="nav-icon" data-panel="experience" aria-label="Experience">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          <span class="tooltip">Experience</span>
+        </div>
+        <div class="nav-icon" data-panel="contact" aria-label="Contact">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span class="tooltip">Contact</span>
+        </div>
+      </nav>
+    </section>
+
+    <footer class="hero-footer">
+      <h3>Abid Wani</h3>
+      <p>Lead UI/UX Designer based in, Srinagar J&K, India</p>
+    </footer>
+  </div>
+
+
+
+  <!-- Overlay -->
+  <div class="panel-overlay" id="overlay"></div>
+
+  <!-- Projects Panel -->
+  <div class="panel" id="panel-projects">
+    <div class="panel-header">
+      <h2>Projects</h2>
+      <button class="close-btn" aria-label="Close">✕</button>
+    </div>
+    <div class="panel-body">
+      <div class="project-grid">
+
+
+        
+        <div class="project-card" onclick="window.location.href='/fastbeetle.html'">
+          <div class="num">01</div>
+          <h4>Fastbeetle Logistics App</h4>
+          <p>Build a delivery platform for regions traditional logistics left behind.</p>
+          <div class="tags"><span class="tag">UX Designer</span><span class="tag">UI Design</span><span class="tag">Logistics</span></div>
+        </div>
+
+
+
+        <div class="project-card" onclick="window.location.href='/saarthi.html'">
+          <div class="num">02</div>
+          <h4>Re-Designed USMLE Sarthi Website</h4>
+          <p>Redesigned the existing website with a new layout and cleaner visual structure to make navigation easier for users Implemented a new AI-powered website feature that enabled users to create their ERAS CV using an AI CV builder.</p>
+          <div class="tags"><span class="tag">Node.js</span><span class="tag">WebSocket</span><span class="tag">Redis</span></div>
+        </div>
+
+
+
+        <div class="project-card" onclick="window.location.href='/coachy.html'">
+          <div class="num">03</div>
+          <h4>Coachy (Web app)</h4>
+          <p>Corporate coaching management system that simplifies participant management, improves administrative efficiency, and enhances goal tracking, addressing the challenges of handling diverse needs, reporting, and payments.</p>
+          <div class="tags"><span class="tag">User Interviews</span><span class="tag">UI Design</span><span class="tag">Usability</span></div>
+        </div>
+
+
+
+        <div class="project-card" onclick="window.location.href='/tabeebi.html'">
+          <div class="num">04</div>
+          <h4>Tabeebi Patient (Mobile app)</h4>
+          <p>a Health software that is intended to provide end to end health related solutions varying from booking the doctor appointments to buying medicines.</p>
+          <div class="tags"><span class="tag">Documentation</span><span class="tag">Interaction</span><span class="tag">UI Design</span></div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Skills Panel -->
+  <div class="panel" id="panel-skills">
+    <div class="panel-header">
+      <h2>Skills</h2>
+      <button class="close-btn" aria-label="Close">✕</button>
+    </div>
+    <div class="panel-body">
+      <div class="skill-group">
+        <div class="skill-group-title">UI/UX Design</div>
+        <div class="skill-bars">
+          <div class="skill-bar"><span class="label">User Research</span><div class="track"><div class="fill" data-w="85%"></div></div><span class="pct">85</span></div>
+          <div class="skill-bar"><span class="label">User Interface</span><div class="track"><div class="fill" data-w="95%"></div></div><span class="pct">95</span></div>
+          <div class="skill-bar"><span class="label">Design systems</span><div class="track"><div class="fill" data-w="80%"></div></div><span class="pct">80</span></div>
+          <div class="skill-bar"><span class="label">Advance prototyping</span><div class="track"><div class="fill" data-w="90%"></div></div><span class="pct">90</span></div>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Design Software</div>
+        <div class="skill-bars">
+          <div class="skill-bar"><span class="label">Figma</span><div class="track"><div class="fill" data-w="95%"></div></div><span class="pct">95</span></div>
+          <div class="skill-bar"><span class="label">Sketch</span><div class="track"><div class="fill" data-w="75%"></div></div><span class="pct">75</span></div>
+          <div class="skill-bar"><span class="label">Conversational & Generative ai</span><div class="track"><div class="fill" data-w="85%"></div></div><span class="pct">85</span></div>
+          <div class="skill-bar"><span class="label">WCAG Compliance</span><div class="track"><div class="fill" data-w="82%"></div></div><span class="pct">82</span></div>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Collaboration & Methodologies</div>
+        <div class="skill-bars">
+          <div class="skill-bar"><span class="label">Mentoring</span><div class="track"><div class="fill" data-w="94%"></div></div><span class="pct">94</span></div>
+          <div class="skill-bar"><span class="label">Sprint planning</span><div class="track"><div class="fill" data-w="86%"></div></div><span class="pct">86</span></div>
+          <div class="skill-bar"><span class="label">Cross-functional teamwork</span><div class="track"><div class="fill" data-w="75%"></div></div><span class="pct">75</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Experience Panel -->
+  <div class="panel" id="panel-experience">
+    <div class="panel-header">
+      <h2>Experience</h2>
+      <button class="close-btn" aria-label="Close">✕</button>
+    </div>
+    <div class="panel-body">
+      <div class="timeline">
+        <div class="timeline-item current">
+          <div class="date">January 2026 - April 2026</div>
+          <h4>Senior UI/UX Designer (Contract Role)</h4>
+          <div class="company">Team Computers - Client Company (Jasper Colin), Noida</div>
+          <p>• Designed a SaaS platform that lets designers, product managers, and stakeholders manage project documentation, user interviews, and sprint planning in a single end-to-end workspace <br>• Worked Top Brass Design system.</br></p>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="date">July 2025 - December 2026</div>
+          <h4>Lead UX Designer(Freelance)</h4>
+          <div class="company">USMLE Sarthi, Remote/USA</div>
+          <p>• Redesigned the existing website with a new layout and cleaner visual structure to make navigation easier for users.<br>• Implemented a new AI-powered website feature that enabled users to create their ERAS CV using an AI CV builder.</br></p>
+        </div>
+        <div class="timeline-item">
+          <div class="date">August 2022 - November 2024</div>
+          <h4>Lead UX Designer</h4>
+          <div class="company">Agiledock Pvt Ltd, Remote/Indore</div>
+          <p>• Led end-to-end digital product design within an agile environment.<br>• Managing the design system that strengthened visual consistency and cut design revisions to accelerate project timelines.</br></p>
+        </div>
+        <div class="timeline-item">
+          <div class="date">October 2021 - July 2022</div>
+          <h4>UI/UX Designer</h4>
+          <div class="company">Noqod.com.sd, Rangreth Srinagar</div>
+          <p>• Worked on NOQOD Business and Pay App for the Sudan users to simplify the online payments.<br>• Designed the new trucker–shipper workflow and international package delivery experience in the Fastbeetle app.</br><br>• Designed an end-to-end patient–doctor appointment booking app.</br></p>
+        </div>
+        <div class="timeline-item">
+          <div class="date">December 2019 - July 2026</div>
+          <h4>UI/UX Designer</h4>
+          <div class="company">Freelance, Srinagar</div>
+          <p>• Designed user-friendly digital solutions across various industries.<br>• Improved engagement by optimizing UI/UX strategies.</br></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Panel -->
+  <div class="panel" id="panel-contact">
+    <div class="panel-header">
+      <h2>Contact</h2>
+      <button class="close-btn" aria-label="Close">✕</button>
+    </div>
+    <div class="panel-body">
+      <div class="contact-grid">
+        <a class="contact-item" href="javascript:void(0)">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <div class="info"><div class="label-text">Email</div><div class="value">abywani81@gmail.com</div></div>
+          <span class="arrow">→</span>
+        </a>
+        <a class="contact-item" href="javascript:void(0)">
+          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          <div class="info"><div class="label-text">GitHub</div><div class="value">github.com/abywani81</div></div>
+          <span class="arrow">→</span>
+        </a>
+        <a class="contact-item" href="javascript:void(0)">
+          <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+          <div class="info"><div class="label-text">Twitter</div><div class="value">@abywani81</div></div>
+          <span class="arrow">→</span>
+        </a>
+        <a class="contact-item" href="javascript:void(0)">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          <div class="info"><div class="label-text">LinkedIn</div><div class="value">linkedin.com/in/abywani81</div></div>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <script>
+    // === 3D Particle Background ===
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let W, H, particles = [], mouse = { x: -1000, y: -1000 };
+
+    function resize() {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    class Particle {
+      constructor() { this.reset(); }
+      reset() {
+        this.x = Math.random() * W;
+        this.y = Math.random() * H;
+        this.z = Math.random() * 1000;
+        this.baseX = this.x;
+        this.baseY = this.y;
+        this.vx = (Math.random() - 0.5) * 0.15;
+        this.vy = (Math.random() - 0.5) * 0.15;
+        this.vz = -(Math.random() * 0.5 + 0.1);
+      }
+      update() {
+        this.z += this.vz;
+        if (this.z <= 0) { this.z = 1000; this.x = Math.random() * W; this.y = Math.random() * H; }
+        const scale = 800 / (800 + this.z);
+        this.sx = (this.x - W / 2) * scale + W / 2;
+        this.sy = (this.y - H / 2) * scale + H / 2;
+        this.size = Math.max(0.3, 1.5 * scale);
+        this.alpha = Math.min(1, scale * 0.8);
+        this.x += this.vx;
+        this.y += this.vy;
+
+        // Mouse interaction
+        const dx = this.sx - mouse.x;
+        const dy = this.sy - mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          const force = (120 - dist) / 120 * 0.3;
+          this.x += dx * force * 0.02;
+          this.y += dy * force * 0.02;
+        }
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.sx, this.sy, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,255,255,${this.alpha * 0.35})`;
+        ctx.fill();
+      }
+    }
+
+    const NUM = Math.min(200, Math.floor(window.innerWidth * 0.12));
+    for (let i = 0; i < NUM; i++) particles.push(new Particle());
+
+    function drawLines() {
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const a = particles[i], b = particles[j];
+          const dx = a.sx - b.sx, dy = a.sy - b.sy;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 100) {
+            ctx.beginPath();
+            ctx.moveTo(a.sx, a.sy);
+            ctx.lineTo(b.sx, b.sy);
+            ctx.strokeStyle = `rgba(255,255,255,${(1 - dist / 100) * 0.06})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, W, H);
+      particles.forEach(p => { p.update(); p.draw(); });
+      drawLines();
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    document.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+
+    // === Custom Cursor ===
+    const cursor = document.getElementById('cursor');
+    let cx = 0, cy = 0, tx = 0, ty = 0;
+
+    document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; });
+
+    function updateCursor() {
+      cx += (tx - cx) * 0.12;
+      cy += (ty - cy) * 0.12;
+      cursor.style.left = cx + 'px';
+      cursor.style.top = cy + 'px';
+      requestAnimationFrame(updateCursor);
+    }
+    updateCursor();
+
+    document.querySelectorAll('.nav-icon, .project-card, .contact-item, .close-btn').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+
+    // === Panel Logic ===
+    const overlay = document.getElementById('overlay');
+    let activePanel = null;
+
+    function openPanel(name) {
+      if (activePanel) closePanel();
+      const panel = document.getElementById(`panel-${name}`);
+      if (!panel) return;
+      panel.classList.add('active');
+      overlay.classList.add('active');
+      activePanel = panel;
+
+      // Animate skill bars
+      if (name === 'skills') {
+        setTimeout(() => {
+          panel.querySelectorAll('.fill').forEach(f => { f.style.width = f.dataset.w; });
+        }, 200);
+      }
+    }
+
+    function closePanel() {
+      if (!activePanel) return;
+      activePanel.querySelectorAll('.fill').forEach(f => { f.style.width = '0'; });
+      activePanel.classList.remove('active');
+      overlay.classList.remove('active');
+      activePanel = null;
+    }
+
+    document.querySelectorAll('.nav-icon').forEach(icon => {
+      icon.addEventListener('click', () => {
+        const panel = icon.dataset.panel;
+        if (activePanel && activePanel.id === `panel-${panel}`) { closePanel(); return; }
+        openPanel(panel);
+      });
+    });
+
+    document.querySelectorAll('.close-btn').forEach(btn => {
+      btn.addEventListener('click', closePanel);
+    });
+
+    overlay.addEventListener('click', closePanel);
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closePanel();
+    });
+  </script>
+
+
+
+</body>
+</html>

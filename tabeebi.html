@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Tabeebi Patient — End-to-End Health Solutions | Abid Wani</title>
+  <!-- Tailwind CSS (your compiled output) -->
+  <link href="./styles/output.css" rel="stylesheet">
+  <!-- Custom styles -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Mono:wght@400;700&display=swap');
+    
+    /* Dark overlay background - matches portfolio */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 80%, rgba(46, 196, 182, 0.06), rgba(0, 0, 0, 0.96));
+      pointer-events: none;
+      z-index: -2;
+    }
+    
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjciIG51bU9jdGF2ZXM9IjMiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjZikgb3BhY2l0eT0iMC4wMiIvPjwvc3ZnPg==');
+      background-repeat: repeat;
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.2);
+      border-radius: 4px;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Phone notch style */
+    .phone-notch {
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 24px;
+      background: #000000;
+      border-radius: 16px;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body class="bg-black text-white font-sans antialiased">
+
+  <div class="max-w-3xl mx-auto px-5 py-8 md:py-10 relative">
+    
+    <!-- Back link -->
+    <a href="index.html" class="inline-flex items-center gap-2 text-white/50 font-mono text-xs mb-10 transition-all duration-300 hover:text-teal-400 hover:gap-3 group">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M15 18L9 12L15 6"/>
+      </svg>
+      <span class="tracking-wide">Back to portfolio</span>
+    </a>
+
+    <!-- Main Content -->
+    <div class="flex flex-col items-center">
+      
+      <!-- Hero Section -->
+      <div class="text-center mb-10" style="animation: fadeInUp 0.5s ease-out forwards;">
+        <div class="flex items-center justify-center gap-2 mb-4">
+          <span class="font-mono text-[11px] bg-teal-400/10 text-teal-400 px-2 py-0.5 rounded-full border border-teal-400/20">04</span>
+          <span class="font-mono text-[11px] tracking-wider text-white/40 uppercase">Case Study</span>
+        </div>
+        
+        <h1 class="text-3xl md:text-5xl font-bold tracking-tight mb-3 bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
+          Tabeebi <span class="text-white/70">Patient Mobile App</span>
+        </h1>
+        
+        <p class="text-white/60 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
+          A health software that provides end-to-end health related solutions — from booking doctor appointments to buying medicines.
+        </p>
+        
+        <div class="flex flex-wrap justify-center gap-2 mt-4">
+          <span class="text-[11px] font-mono text-white/60 bg-white/5 backdrop-blur-sm px-3 py-1 rounded-full border border-white/5">Documentation</span>
+          <span class="text-[11px] font-mono text-white/60 bg-white/5 backdrop-blur-sm px-3 py-1 rounded-full border border-white/5">Interaction</span>
+          <span class="text-[11px] font-mono text-white/60 bg-white/5 backdrop-blur-sm px-3 py-1 rounded-full border border-white/5">UI Design</span>
+          <span class="text-[11px] font-mono text-white/60 bg-white/5 backdrop-blur-sm px-3 py-1 rounded-full border border-white/5">Mobile Health</span>
+          <span class="text-[11px] font-mono text-white/60 bg-white/5 backdrop-blur-sm px-3 py-1 rounded-full border border-white/5">Telemedicine</span>
+        </div>
+      </div>
+
+      <!-- Hero Visual - Glass Cards -->
+      <div class="w-full bg-white/5 backdrop-blur-sm rounded-3xl p-5 md:p-6 border border-white/5 mb-10" style="animation: fadeInUp 0.5s ease-out 0.1s forwards; opacity: 0;">
+        <div class="flex justify-center gap-4 md:gap-6 flex-wrap">
+          <div class="bg-white/5 rounded-2xl px-5 py-3 text-center min-w-[100px] border border-white/5 transition-all duration-300 hover:-translate-y-1 hover:border-teal-400/30">
+            <div class="text-3xl mb-1">🏥</div>
+            <div class="text-sm font-medium text-white/80">Book Appointments</div>
+          </div>
+          <div class="bg-white/5 rounded-2xl px-5 py-3 text-center min-w-[100px] border border-white/5 transition-all duration-300 hover:-translate-y-1 hover:border-teal-400/30">
+            <div class="text-3xl mb-1">💊</div>
+            <div class="text-sm font-medium text-white/80">Buy Medicines</div>
+          </div>
+          <div class="bg-white/5 rounded-2xl px-5 py-3 text-center min-w-[100px] border border-white/5 transition-all duration-300 hover:-translate-y-1 hover:border-teal-400/30">
+            <div class="text-3xl mb-1">📋</div>
+            <div class="text-sm font-medium text-white/80">Health Records</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Design Phase -->
+      <div class="w-full">
+        <div class="text-center mb-8">
+          <span class="font-mono text-[11px] tracking-[2px] text-teal-400 bg-teal-400/10 px-3 py-1 rounded-full inline-block mb-3">Design Phase</span>
+          <h2 class="text-2xl md:text-3xl font-semibold tracking-tight bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
+            End-to-end healthcare <br>at your fingertips
+          </h2>
+          <div class="w-12 h-0.5 bg-teal-400 mx-auto mt-3 rounded-full"></div>
+        </div>
+
+        <!-- Challenge -->
+        <div class="mb-8">
+          <h3 class="text-xl font-semibold mb-2 text-teal-400">The challenge</h3>
+          <p class="text-white/70 leading-relaxed text-sm md:text-base">
+            Healthcare access remains fragmented — patients juggle multiple apps for appointments, 
+            teleconsultations, medicine delivery, lab tests, and health records. Tabeebi aimed to 
+            consolidate these services into a single, intuitive mobile platform. The challenge was 
+            designing a comprehensive health ecosystem that serves diverse patient needs while 
+            maintaining simplicity, trust, and accessibility for users across varying digital literacy levels.
+          </p>
+        </div>
+
+        <!-- Design Approach -->
+        <div class="mb-8">
+          <h3 class="text-xl font-semibold mb-2 text-teal-400">Design approach</h3>
+          <p class="text-white/70 leading-relaxed text-sm md:text-base">
+            A human-centered design process guided by extensive user research with patients, caregivers, 
+            and healthcare providers. We conducted <strong>35+ user interviews</strong>, analyzed competitor 
+            gaps, and mapped the complete patient journey — from symptom checking to treatment adherence. 
+            The design prioritizes <strong>progressive disclosure</strong>, <strong>contextual help</strong>, 
+            and <strong>accessibility features</strong> (large touch targets, voice search, high contrast modes).
+          </p>
+        </div>
+
+        <!-- UI Showcase - Phone Mockups -->
+        <div class="flex flex-wrap justify-center gap-6 my-10">
+          <!-- Phone Mock 1 - Home Dashboard -->
+          <div class="text-center">
+            <div class="bg-white/5 rounded-[38px] p-2.5 shadow-2xl border border-white/10 max-w-[240px] mx-auto relative">
+              <div class="absolute top-2 left-1/2 -translate-x-1/2 w-28 h-6 bg-black rounded-2xl z-10"></div>
+              <div class="bg-[#050508] rounded-[30px] overflow-hidden aspect-[9/18] flex flex-col">
+                <div class="pt-8 pb-1 text-center text-[9px] text-white/40">9:41</div>
+                <div class="flex-1 p-3">
+                  <div class="flex justify-between items-center mb-3">
+                    <span class="text-xs font-medium">Hello, Sarah 👋</span>
+                    <span class="text-[9px] bg-teal-400/15 text-teal-400 px-2 py-0.5 rounded-full">Health Score: 92</span>
+                  </div>
+                  <div class="grid grid-cols-4 gap-1.5 mb-4">
+                    <div class="bg-white/5 text-center py-2 rounded-xl text-[11px]">🏥 Book</div>
+                    <div class="bg-white/5 text-center py-2 rounded-xl text-[11px]">💊 Meds</div>
+                    <div class="bg-white/5 text-center py-2 rounded-xl text-[11px]">📋 Reports</div>
+                    <div class="bg-white/5 text-center py-2 rounded-xl text-[11px]">📞 Consult</div>
+                  </div>
+                  <div class="text-[10px] font-semibold text-teal-400 mb-1.5">Recommended Doctors</div>
+                  <div class="bg-white/5 rounded-xl p-2 mb-1.5">
+                    <div class="text-[9px] font-medium">👩‍⚕️ Dr. Priya Sharma</div>
+                    <div class="text-[7px] text-white/40">Cardiologist · Available Today</div>
+                  </div>
+                  <div class="bg-white/5 rounded-xl p-2">
+                    <div class="text-[9px] font-medium">👨‍⚕️ Dr. Rajesh Kumar</div>
+                    <div class="text-[7px] text-white/40">Dermatologist · Next: 2:30 PM</div>
+                  </div>
+                </div>
+                <div class="flex justify-around py-2 border-t border-white/5 text-sm">
+                  <span class="text-teal-400">🏠</span>
+                  <span>📅</span>
+                  <span>💊</span>
+                  <span>👤</span>
+                </div>
+              </div>
+            </div>
+            <p class="text-[11px] font-mono text-white/40 mt-2">Home dashboard — quick access to health services</p>
+          </div>
+
+          <!-- Phone Mock 2 - Appointment Booking -->
+          <div class="text-center">
+            <div class="bg-white/5 rounded-[38px] p-2.5 shadow-2xl border border-white/10 max-w-[240px] mx-auto relative">
+              <div class="absolute top-2 left-1/2 -translate-x-1/2 w-28 h-6 bg-black rounded-2xl z-10"></div>
+              <div class="bg-[#050508] rounded-[30px] overflow-hidden aspect-[9/18] flex flex-col">
+                <div class="pt-8 pb-1 text-center text-[9px] text-white/40">9:41</div>
+                <div class="flex-1 p-3">
+                  <div class="flex items-center gap-2 mb-3">
+                    <span class="text-sm">←</span>
+                    <span class="text-xs font-medium flex-1 text-center">Book Appointment</span>
+                  </div>
+                  <div class="bg-white/5 rounded-full px-3 py-1.5 text-[9px] text-white/40 mb-3">🔍 Search by doctor, specialty...</div>
+                  <div class="flex gap-1.5 mb-3">
+                    <div class="bg-white/5 rounded-full px-2 py-1 text-[8px]">Cardiology</div>
+                    <div class="bg-white/5 rounded-full px-2 py-1 text-[8px]">Dermatology</div>
+                    <div class="bg-white/5 rounded-full px-2 py-1 text-[8px]">Pediatrics</div>
+                  </div>
+                  <div class="flex gap-1.5 mb-3">
+                    <div class="bg-teal-400 text-black px-2 py-1 rounded-full text-[8px] font-medium">Today</div>
+                    <div class="bg-white/5 px-2 py-1 rounded-full text-[8px]">Tomorrow</div>
+                    <div class="bg-white/5 px-2 py-1 rounded-full text-[8px]">Wed 12</div>
+                  </div>
+                  <div class="space-y-1.5">
+                    <div class="bg-white/5 rounded-xl p-1.5 text-center text-[8px]">10:00 AM · Video Consult</div>
+                    <div class="bg-white/5 rounded-xl p-1.5 text-center text-[8px]">11:30 AM · In-Clinic</div>
+                    <div class="bg-white/5 rounded-xl p-1.5 text-center text-[8px]">2:00 PM · Video Consult</div>
+                  </div>
+                </div>
+                <div class="flex justify-around py-2 border-t border-white/5 text-sm">
+                  <span>🏠</span>
+                  <span class="text-teal-400">📅</span>
+                  <span>💊</span>
+                  <span>👤</span>
+                </div>
+              </div>
+            </div>
+            <p class="text-[11px] font-mono text-white/40 mt-2">Appointment booking — specialty & slot selection</p>
+          </div>
+
+          <!-- Phone Mock 3 - Medicine Store -->
+          <div class="text-center">
+            <div class="bg-white/5 rounded-[38px] p-2.5 shadow-2xl border border-white/10 max-w-[240px] mx-auto relative">
+              <div class="absolute top-2 left-1/2 -translate-x-1/2 w-28 h-6 bg-black rounded-2xl z-10"></div>
+              <div class="bg-[#050508] rounded-[30px] overflow-hidden aspect-[9/18] flex flex-col">
+                <div class="pt-8 pb-1 text-center text-[9px] text-white/40">9:41</div>
+                <div class="flex-1 p-3">
+                  <div class="flex items-center justify-between mb-3">
+                    <span>←</span>
+                    <span class="text-xs font-medium">Medicine Store</span>
+                    <span>🛒</span>
+                  </div>
+                  <div class="bg-white/5 rounded-full px-3 py-1.5 text-[9px] text-white/40 mb-2">🔍 Search medicines...</div>
+                  <div class="border border-dashed border-teal-400/30 rounded-xl p-2 text-center text-[9px] text-teal-400 mb-3">📎 Upload Prescription · Get upto 20% off</div>
+                  <div class="bg-white/5 rounded-xl p-2 flex justify-between items-center mb-1.5">
+                    <div><div class="text-[9px] font-medium">Paracetamol 500mg</div><div class="text-[7px] text-white/40">Strip of 10 tablets</div><div class="text-[9px] text-teal-400">$4.99</div></div>
+                    <div class="w-5 h-5 bg-teal-400 rounded-full flex items-center justify-center text-black font-bold text-sm">+</div>
+                  </div>
+                  <div class="bg-white/5 rounded-xl p-2 flex justify-between items-center">
+                    <div><div class="text-[9px] font-medium">Vitamin D3 60k IU</div><div class="text-[7px] text-white/40">Pack of 4 capsules</div><div class="text-[9px] text-teal-400">$8.49</div></div>
+                    <div class="w-5 h-5 bg-teal-400 rounded-full flex items-center justify-center text-black font-bold text-sm">+</div>
+                  </div>
+                  <div class="bg-teal-400/10 rounded-xl p-1.5 text-center text-[8px] text-teal-400 mt-3">🛒 2 items · $13.48 → Free delivery</div>
+                </div>
+                <div class="flex justify-around py-2 border-t border-white/5 text-sm">
+                  <span>🏠</span>
+                  <span>📅</span>
+                  <span class="text-teal-400">💊</span>
+                  <span>👤</span>
+                </div>
+              </div>
+            </div>
+            <p class="text-[11px] font-mono text-white/40 mt-2">Medicine ordering — prescription & smart reordering</p>
+          </div>
+        </div>
+
+        <!-- Visual Identity -->
+        <div class="mb-8">
+          <h3 class="text-xl font-semibold mb-2 text-teal-400">Visual identity</h3>
+          <p class="text-white/70 leading-relaxed text-sm md:text-base">
+            Tabeebi's mobile-first design features a calming dark theme with deep teal and blue gradients, 
+            accented with healing teal and warm orange for CTAs. The dark background reduces eye strain 
+            for users who may be using the app during late hours or in low-light environments. 
+            Large, tappable cards and clear typography create a trustworthy, clinical-yet-warm atmosphere.
+          </p>
+        </div>
+
+        <!-- Flow Diagram -->
+        <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-5 md:p-6 border border-white/5 my-8">
+          <h4 class="text-center font-semibold text-teal-400 mb-4 text-sm">Complete patient journey</h4>
+          <div class="flex flex-wrap justify-center items-center gap-1">
+            <div class="bg-white/5 rounded-xl px-2 py-2 min-w-[70px] text-center border border-white/5">
+              <div class="text-[9px] font-medium">Onboarding</div>
+              <div class="text-[7px] text-white/40">Health ID</div>
+            </div>
+            <span class="text-teal-400/50 text-xs">→</span>
+            <div class="bg-white/5 rounded-xl px-2 py-2 min-w-[70px] text-center border border-white/5">
+              <div class="text-[9px] font-medium">Symptom Check</div>
+              <div class="text-[7px] text-white/40">AI Triage</div>
+            </div>
+            <span class="text-teal-400/50 text-xs">→</span>
+            <div class="bg-white/5 rounded-xl px-2 py-2 min-w-[70px] text-center border border-white/5">
+              <div class="text-[9px] font-medium">Doctor Select</div>
+              <div class="text-[7px] text-white/40">Specialty & Slot</div>
+            </div>
+            <span class="text-teal-400/50 text-xs">→</span>
+            <div class="bg-white/5 rounded-xl px-2 py-2 min-w-[70px] text-center border border-white/5">
+              <div class="text-[9px] font-medium">Consultation</div>
+              <div class="text-[7px] text-white/40">Video/In-Clinic</div>
+            </div>
+            <span class="text-teal-400/50 text-xs">→</span>
+            <div class="bg-white/5 rounded-xl px-2 py-2 min-w-[70px] text-center border border-white/5">
+              <div class="text-[9px] font-medium">Prescription</div>
+              <div class="text-[7px] text-white/40">E-Prescription</div>
+            </div>
+            <span class="text-teal-400/50 text-xs">→</span>
+            <div class="bg-white/5 rounded-xl px-2 py-2 min-w-[70px] text-center border border-white/5">
+              <div class="text-[9px] font-medium">Medicine Delivery</div>
+              <div class="text-[7px] text-white/40">Doorstep</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interaction Design -->
+        <div class="grid md:grid-cols-3 gap-3 my-8">
+          <div class="bg-white/5 rounded-xl p-3 border border-white/5">
+            <div class="text-xl mb-1">📄</div>
+            <div class="text-xs font-semibold text-teal-400 mb-0.5">Documentation-first</div>
+            <p class="text-white/50 text-[10px] leading-relaxed">Prescriptions, lab reports auto-save to secure digital locker.</p>
+          </div>
+          <div class="bg-white/5 rounded-xl p-3 border border-white/5">
+            <div class="text-xl mb-1">🎯</div>
+            <div class="text-xs font-semibold text-teal-400 mb-0.5">Haptic feedback</div>
+            <p class="text-white/50 text-[10px] leading-relaxed">Subtle vibrations confirm actions, reducing user uncertainty.</p>
+          </div>
+          <div class="bg-white/5 rounded-xl p-3 border border-white/5">
+            <div class="text-xl mb-1">🔔</div>
+            <div class="text-xs font-semibold text-teal-400 mb-0.5">Smart reminders</div>
+            <p class="text-white/50 text-[10px] leading-relaxed">Medication adherence tracking with refill alerts.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content Phase -->
+      <div class="w-full mt-4">
+        <div class="text-center mb-8">
+          <span class="font-mono text-[11px] tracking-[2px] text-teal-400 bg-teal-400/10 px-3 py-1 rounded-full inline-block mb-3">Content Phase</span>
+          <h2 class="text-2xl md:text-3xl font-semibold tracking-tight bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
+            Documentation, research & outcomes
+          </h2>
+          <div class="w-12 h-0.5 bg-teal-400 mx-auto mt-3 rounded-full"></div>
+        </div>
+
+        <!-- Research Documentation -->
+        <div class="bg-white/5 rounded-xl p-4 mb-6">
+          <h4 class="font-semibold text-amber-400 mb-3 text-sm">📋 Documentation & research methodology</h4>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+            <div class="flex items-center gap-1.5 text-[10px] text-white/60"><span class="text-teal-400">01</span> User personas</div>
+            <div class="flex items-center gap-1.5 text-[10px] text-white/60"><span class="text-teal-400">02</span> Journey maps</div>
+            <div class="flex items-center gap-1.5 text-[10px] text-white/60"><span class="text-teal-400">03</span> IA blueprints</div>
+            <div class="flex items-center gap-1.5 text-[10px] text-white/60"><span class="text-teal-400">04</span> Prototype annotations</div>
+            <div class="flex items-center gap-1.5 text-[10px] text-white/60"><span class="text-teal-400">05</span> WCAG 2.1 compliance</div>
+            <div class="flex items-center gap-1.5 text-[10px] text-white/60"><span class="text-teal-400">06</span> Usability reports</div>
+          </div>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="grid md:grid-cols-2 gap-3 my-6">
+          <div class="bg-white/5 rounded-xl p-3 border border-white/5">
+            <div class="text-xl mb-1">📅</div>
+            <div class="text-xs font-semibold text-teal-400">Doctor Appointment Booking</div>
+            <p class="text-white/50 text-[10px] leading-relaxed mt-1">Search by specialty, location, or insurance. Real-time availability and calendar sync.</p>
+          </div>
+          <div class="bg-white/5 rounded-xl p-3 border border-white/5">
+            <div class="text-xl mb-1">💊</div>
+            <div class="text-xs font-semibold text-teal-400">Medicine Purchase & Delivery</div>
+            <p class="text-white/50 text-[10px] leading-relaxed mt-1">Upload prescription or search OTC. Compare prices, track delivery.</p>
+          </div>
+          <div class="bg-white/5 rounded-xl p-3 border border-white/5">
+            <div class="text-xl mb-1">🧪</div>
+            <div class="text-xs font-semibold text-teal-400">Lab Test Booking</div>
+            <p class="text-white/50 text-[10px] leading-relaxed mt-1">Schedule home sample collection, view digital results.</p>
+          </div>
+          <div class="bg-white/5 rounded-xl p-3 border border-white/5">
+            <div class="text-xl mb-1">📋</div>
+            <div class="text-xs font-semibold text-teal-400">Electronic Health Records</div>
+            <p class="text-white/50 text-[10px] leading-relaxed mt-1">Centralized digital locker for prescriptions and reports.</p>
+          </div>
+        </div>
+
+        <!-- Metrics -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 my-6">
+          <div class="text-center bg-white/5 rounded-xl p-3 border border-white/5">
+            <div class="text-lg font-bold text-amber-400">45k+</div>
+            <div class="text-[8px] text-white/40">Monthly active users</div>
+          </div>
+          <div class="text-center bg-white/5 rounded-xl p-3 border border-white/5">
+            <div class="text-lg font-bold text-amber-400">4.8★</div>
+            <div class="text-[8px] text-white/40">App store rating</div>
+          </div>
+          <div class="text-center bg-white/5 rounded-xl p-3 border border-white/5">
+            <div class="text-lg font-bold text-amber-400">32%</div>
+            <div class="text-[8px] text-white/40">Medicine cost savings</div>
+          </div>
+          <div class="text-center bg-white/5 rounded-xl p-3 border border-white/5">
+            <div class="text-lg font-bold text-amber-400">89%</div>
+            <div class="text-[8px] text-white/40">Appointment show rate</div>
+          </div>
+        </div>
+
+        <!-- Testimonial -->
+        <div class="bg-gradient-to-r from-teal-400/5 to-transparent rounded-2xl p-6 border-l-4 border-teal-400 my-6">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2EC4B6" stroke-width="1.6" class="mb-3">
+            <path d="M10 11H6C5.46957 11 4.96086 10.7893 4.58579 10.4142C4.21071 10.0391 4 9.53043 4 9V7C4 6.46957 4.21071 5.96086 4.58579 5.58579C4.96086 5.21071 5.46957 5 6 5H8C8.53043 5 9.03914 5.21071 9.41421 5.58579C9.78929 5.96086 10 6.46957 10 7V15C10 15.7956 9.68393 16.5587 9.12132 17.1213C8.55871 17.6839 7.79565 18 7 18H4"/>
+            <path d="M20 11H16C15.4696 11 14.9609 10.7893 14.5858 10.4142C14.2107 10.0391 14 9.53043 14 9V7C14 6.46957 14.2107 5.96086 14.5858 5.58579C14.9609 5.21071 15.4696 5 16 5H18C18.5304 5 19.0391 5.21071 19.4142 5.58579C19.7893 5.96086 20 6.46957 20 7V15C20 15.7956 19.6839 16.5587 19.1213 17.1213C18.5587 17.6839 17.7956 18 17 18H14"/>
+          </svg>
+          <p class="text-white/70 italic text-sm leading-relaxed">
+            "Tabeebi has been a lifesaver for my elderly parents. From booking appointments to delivering medicines, everything is seamless."
+          </p>
+          <p class="text-teal-400 text-xs font-mono mt-3">— Anita Verma, Caregiver & Tabeebi user</p>
+        </div>
+
+        <!-- Design System -->
+        <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-5 border border-white/5 my-6">
+          <h4 class="font-semibold text-amber-400 mb-4 text-sm">🎨 Design system snapshot</h4>
+          <div class="flex flex-wrap justify-center gap-4 mb-5">
+            <div class="text-center"><div class="w-12 h-12 rounded-2xl bg-[#071013] border border-white/10 mb-1"></div><span class="text-[9px] text-white/40">#071013</span></div>
+            <div class="text-center"><div class="w-12 h-12 rounded-2xl bg-[#16212B] border border-white/10 mb-1"></div><span class="text-[9px] text-white/40">#16212B</span></div>
+            <div class="text-center"><div class="w-12 h-12 rounded-2xl bg-[#2EC4B6] border border-white/10 mb-1"></div><span class="text-[9px] text-white/40">#2EC4B6</span></div>
+            <div class="text-center"><div class="w-12 h-12 rounded-2xl bg-[#FF9F1C] border border-white/10 mb-1"></div><span class="text-[9px] text-white/40">#FF9F1C</span></div>
+          </div>
+          <div class="border-t border-white/10 pt-4">
+            <div class="text-xs font-mono text-white/60 mb-2">Typography — SF Pro / Inter</div>
+            <div class="text-[10px] text-white/40">Headings: 22px / Semibold · Mobile-optimized</div>
+            <div class="text-[10px] text-white/40">Touch targets: Minimum 44x44pt (WCAG compliant)</div>
+          </div>
+        </div>
+
+        <!-- Compliance -->
+        <div class="bg-teal-400/5 rounded-2xl p-4 border border-teal-400/15 my-6">
+          <h4 class="text-teal-400 font-semibold text-sm mb-2">🔒 Healthcare compliance & data privacy</h4>
+          <ul class="space-y-1.5">
+            <li class="text-white/60 text-[10px] flex items-start gap-1.5"><span class="text-teal-400">✓</span> End-to-end encryption for all health data</li>
+            <li class="text-white/60 text-[10px] flex items-start gap-1.5"><span class="text-teal-400">✓</span> Biometric authentication for sensitive records</li>
+            <li class="text-white/60 text-[10px] flex items-start gap-1.5"><span class="text-teal-400">✓</span> Audit logs tracking all data access</li>
+            <li class="text-white/60 text-[10px] flex items-start gap-1.5"><span class="text-teal-400">✓</span> Explicit patient consent for data sharing</li>
+          </ul>
+        </div>
+
+        <!-- Key Takeaways -->
+        <div class="my-6">
+          <h4 class="font-semibold text-amber-400 mb-3 text-sm">📌 Key learnings & future iterations</h4>
+          <ul class="space-y-2">
+            <li class="text-white/60 text-xs flex items-start gap-2"><span class="text-teal-400">▹</span> <strong>Accessibility matters:</strong> Voice navigation and screen reader optimization added in v2</li>
+            <li class="text-white/60 text-xs flex items-start gap-2"><span class="text-teal-400">▹</span> <strong>Offline capabilities:</strong> Added offline access to prescriptions for low-network areas</li>
+            <li class="text-white/60 text-xs flex items-start gap-2"><span class="text-teal-400">▹</span> <strong>Trust signals:</strong> Verified doctor badges improved conversion rates</li>
+            <li class="text-white/60 text-xs flex items-start gap-2"><span class="text-teal-400">▹</span> <strong>Family accounts:</strong> Managing dependents now a priority for next release</li>
+          </ul>
+        </div>
+
+        <!-- Future Roadmap -->
+        <div class="bg-teal-400/5 rounded-2xl p-5 border border-teal-400/15 my-6">
+          <h4 class="text-teal-400 font-semibold text-sm mb-2">🗺️ Roadmap: What's next</h4>
+          <p class="text-white/60 text-xs leading-relaxed">
+            Phase 2 includes AI-powered symptom checker with differential diagnosis, integration with wearable devices 
+            (Apple Health, Fitbit), telemedicine group consultations, and a mental wellness module. 
+            Expansion to 5 new cities planned for Q3 2026.
+          </p>
+        </div>
+
+        <!-- Conclusion -->
+        <div class="bg-teal-400/5 rounded-2xl p-6 text-center border border-teal-400/15 my-6">
+          <p class="text-white/70 text-sm leading-relaxed">
+            Tabeebi Patient app successfully consolidates fragmented healthcare services into a single, 
+            intuitive mobile platform. By prioritizing user research, thorough documentation, and 
+            accessible interaction design, we've created a solution that truly serves patients throughout 
+            their entire healthcare journey — from first symptom to complete recovery.
+          </p>
+        </div>
+      </div>
+
+      <!-- Case Navigation -->
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4 w-full mt-10 pt-5 border-t border-white/5">
+        <a href="index.html" class="inline-flex items-center gap-2 text-white/50 font-mono text-[11px] transition-all duration-300 hover:text-teal-400 hover:gap-3">
+          <span class="text-sm">←</span> All Projects
+        </a>
+        <a href="fastbeetle.html" class="inline-flex items-center gap-2 text-white/50 font-mono text-[11px] transition-all duration-300 hover:text-teal-400 hover:gap-3">
+          Next Case Study <span class="text-sm">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

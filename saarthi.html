@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>USMLE Sarthi — AI-Powered CV Builder | Abid Wani</title>
+  <!-- Tailwind CSS (your compiled output) -->
+  <link href="./styles/output.css" rel="stylesheet">
+  <!-- Custom styles -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Mono:wght@400;700&display=swap');
+    
+    /* Dark overlay background - matches portfolio */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 30% 15%, rgba(0, 180, 216, 0.05), rgba(0, 0, 0, 0.96));
+      pointer-events: none;
+      z-index: -2;
+    }
+    
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjciIG51bU9jdGF2ZXM9IjMiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjZikgb3BhY2l0eT0iMC4wMiIvPjwvc3ZnPg==');
+      background-repeat: repeat;
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.2);
+      border-radius: 4px;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body class="bg-black text-white font-sans antialiased">
+
+  <div class="max-w-3xl mx-auto px-5 py-8 md:py-10 relative">
+    
+    <!-- Back link -->
+    <a href="index.html" class="inline-flex items-center gap-2 text-white/50 font-mono text-xs mb-10 transition-all duration-300 hover:text-cyan-400 hover:gap-3 group">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M15 18L9 12L15 6"/>
+      </svg>
+      <span class="tracking-wide">Back to portfolio</span>
+    </a>
+
+    <!-- Main Content -->
+    <div class="flex flex-col items-center">
+      
+      <!-- Hero Section -->
+      <div class="text-center mb-10" style="animation: fadeInUp 0.5s ease-out forwards;">
+        <div class="flex items-center justify-center gap-2 mb-4">
+          <span class="font-mono text-[11px] bg-cyan-400/10 text-cyan-400 px-2 py-0.5 rounded-full border border-cyan-400/20">02</span>
+          <span class="font-mono text-[11px] tracking-wider text-white/40 uppercase">Case Study</span>
+        </div>
+        
+        <h1 class="text-3xl md:text-5xl font-bold tracking-tight mb-3 bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
+          Re-Designed <span class="text-white/70">USMLE Sarthi</span>
+        </h1>
+        
+        <p class="text-white/60 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
+          Redesigned the existing website with a new layout and cleaner visual structure. 
+          Implemented an AI-powered feature enabling users to create their ERAS CV using an intelligent AI CV builder.
+        </p>
+        
+        <div class="flex flex-wrap justify-center gap-2 mt-4">
+          <span class="text-[11px] font-mono text-white/60 bg-white/5 backdrop-blur-sm px-3 py-1 rounded-full border border-white/5">Node.js</span>
+          <span class="text-[11px] font-mono text-white/60 bg-white/5 backdrop-blur-sm px-3 py-1 rounded-full border border-white/5">WebSocket</span>
+          <span class="text-[11px] font-mono text-white/60 bg-white/5 backdrop-blur-sm px-3 py-1 rounded-full border border-white/5">Redis</span>
+          <span class="text-[11px] font-mono text-white/60 bg-white/5 backdrop-blur-sm px-3 py-1 rounded-full border border-white/5">UX Design</span>
+          <span class="text-[11px] font-mono text-white/60 bg-white/5 backdrop-blur-sm px-3 py-1 rounded-full border border-white/5">AI Integration</span>
+        </div>
+      </div>
+
+      <!-- Hero Visual - Glass Cards -->
+      <div class="w-full bg-white/5 backdrop-blur-sm rounded-3xl p-5 md:p-6 border border-white/5 mb-10" style="animation: fadeInUp 0.5s ease-out 0.1s forwards; opacity: 0;">
+        <div class="flex justify-center gap-4 md:gap-6 flex-wrap">
+          <div class="bg-white/5 rounded-2xl px-5 py-3 text-center min-w-[100px] border border-white/5 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/30">
+            <div class="text-3xl mb-1">📄</div>
+            <div class="text-sm font-medium text-white/80">AI CV Builder</div>
+          </div>
+          <div class="bg-white/5 rounded-2xl px-5 py-3 text-center min-w-[100px] border border-white/5 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/30">
+            <div class="text-3xl mb-1">⚡</div>
+            <div class="text-sm font-medium text-white/80">Real-time Sync</div>
+          </div>
+          <div class="bg-white/5 rounded-2xl px-5 py-3 text-center min-w-[100px] border border-white/5 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/30">
+            <div class="text-3xl mb-1">🎯</div>
+            <div class="text-sm font-medium text-white/80">ERAS Compatible</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Design Phase -->
+      <div class="w-full">
+        <div class="text-center mb-8">
+          <span class="font-mono text-[11px] tracking-[2px] text-cyan-400 bg-cyan-400/10 px-3 py-1 rounded-full inline-block mb-3">Design Phase</span>
+          <h2 class="text-2xl md:text-3xl font-semibold tracking-tight bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
+            Modernizing medical <br>career preparation
+          </h2>
+          <div class="w-12 h-0.5 bg-cyan-400 mx-auto mt-3 rounded-full"></div>
+        </div>
+
+        <!-- Challenge -->
+        <div class="mb-8">
+          <h3 class="text-xl font-semibold mb-2 text-cyan-400">The challenge</h3>
+          <p class="text-white/70 leading-relaxed text-sm md:text-base">
+            USMLE Sarthi's existing website suffered from cluttered navigation, outdated visual hierarchy, 
+            and a steep learning curve for international medical graduates preparing for US residency. 
+            Users struggled to find essential resources, and the manual CV creation process for ERAS 
+            was time-consuming and error-prone.
+          </p>
+        </div>
+
+        <!-- Design Approach -->
+        <div class="mb-8">
+          <h3 class="text-xl font-semibold mb-2 text-cyan-400">Design approach</h3>
+          <p class="text-white/70 leading-relaxed text-sm md:text-base">
+            Adopting a user-centered design methodology, we conducted extensive user interviews with 
+            IMGs, medical students, and residency advisors. Key insights revealed that users needed 
+            clear content organization, faster access to study materials, and guided assistance for 
+            complex ERAS requirements. The redesign focused on <strong>intuitive information architecture</strong>, 
+            <strong>reduced cognitive load</strong>, and <strong>AI-assisted personalization</strong>.
+          </p>
+        </div>
+
+        <!-- UI Showcase - Browser Mocks -->
+        <div class="flex flex-wrap justify-center gap-6 my-10">
+          <!-- Browser Mock 1 - Dashboard -->
+          <div class="text-center">
+            <div class="bg-[#0E1622] rounded-xl overflow-hidden shadow-2xl border border-white/10 max-w-[320px] mx-auto">
+              <div class="bg-[#131C2A] px-3 py-2 flex items-center gap-1.5 border-b border-white/5">
+                <div class="w-2.5 h-2.5 rounded-full bg-[#FF5F56]"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-[#27C93F]"></div>
+                <div class="flex-1 text-center text-[9px] text-white/40 font-mono">usmlesarthi.com/dashboard</div>
+              </div>
+              <div class="bg-[#070C14] p-4 min-h-[300px]">
+                <div class="flex gap-2">
+                  <div class="bg-[#0F1825] w-16 p-2 rounded-xl text-center">
+                    <div class="text-[10px] text-cyan-400">📚</div>
+                    <div class="text-[8px] text-white/40">Resources</div>
+                  </div>
+                  <div class="flex-1 space-y-1.5">
+                    <div class="bg-[#111B2A] p-2 rounded-xl text-[10px] text-center">🎯 Step 1 Prep</div>
+                    <div class="bg-[#111B2A] p-2 rounded-xl text-[10px] text-center">📝 Step 2 CK</div>
+                    <div class="bg-[#111B2A] p-2 rounded-xl text-[10px] text-center">📋 ERAS Guide</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="text-[11px] font-mono text-white/40 mt-2">Clean dashboard — streamlined navigation</p>
+          </div>
+
+          <!-- Browser Mock 2 - AI CV Builder -->
+          <div class="text-center">
+            <div class="bg-[#0E1622] rounded-xl overflow-hidden shadow-2xl border border-white/10 max-w-[320px] mx-auto">
+              <div class="bg-[#131C2A] px-3 py-2 flex items-center gap-1.5 border-b border-white/5">
+                <div class="w-2.5 h-2.5 rounded-full bg-[#FF5F56]"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-[#27C93F]"></div>
+                <div class="flex-1 text-center text-[9px] text-white/40 font-mono">AI CV Builder</div>
+              </div>
+              <div class="bg-[#070C14] p-4 min-h-[300px]">
+                <div class="text-center text-cyan-400 font-semibold text-xs mb-3">✨ AI CV Assistant</div>
+                <div class="space-y-3">
+                  <div class="bg-[#0F1825] rounded-xl p-2">
+                    <div class="text-[10px] font-semibold text-white/60 mb-1">Work Experience</div>
+                    <div class="text-[9px] text-white/40 italic">"Suggesting: Research Assistant, Mayo Clinic"</div>
+                  </div>
+                  <div class="bg-[#0F1825] rounded-xl p-2">
+                    <div class="text-[10px] font-semibold text-white/60 mb-1">Publications</div>
+                    <div class="text-[9px] text-white/40 italic">"Auto-formatting in ERAS style"</div>
+                  </div>
+                  <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 text-black font-semibold text-[11px] text-center py-2 rounded-full mt-2">✨ Generate CV</div>
+                </div>
+              </div>
+            </div>
+            <p class="text-[11px] font-mono text-white/40 mt-2">AI CV Builder — ERAS-compatible CV creation</p>
+          </div>
+        </div>
+
+        <!-- Visual Identity -->
+        <div class="mb-8">
+          <h3 class="text-xl font-semibold mb-2 text-cyan-400">Visual identity</h3>
+          <p class="text-white/70 leading-relaxed text-sm md:text-base">
+            The redesigned interface leverages a sophisticated dark theme with deep navy-charcoal gradients, 
+            cyan and warm accents for interactive elements, and highly legible typography using Inter. 
+            Every component sits on layered glass-morphism cards that reduce eye strain during long study 
+            sessions, creating a calm, professional atmosphere.
+          </p>
+        </div>
+
+        <!-- Flow Diagram -->
+        <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-5 md:p-6 border border-white/5 my-8">
+          <h4 class="text-center font-semibold text-cyan-400 mb-4 text-sm">Key user flow: AI CV creation journey</h4>
+          <div class="flex flex-wrap justify-center items-center gap-1">
+            <div class="bg-white/5 rounded-xl px-2 py-2 min-w-[80px] text-center border border-white/5">
+              <div class="text-[10px] font-medium">Sign Up</div>
+              <div class="text-[8px] text-white/40">User profile setup</div>
+            </div>
+            <span class="text-cyan-400/50 text-sm">→</span>
+            <div class="bg-white/5 rounded-xl px-2 py-2 min-w-[80px] text-center border border-white/5">
+              <div class="text-[10px] font-medium">AI Interview</div>
+              <div class="text-[8px] text-white/40">Gather experience</div>
+            </div>
+            <span class="text-cyan-400/50 text-sm">→</span>
+            <div class="bg-white/5 rounded-xl px-2 py-2 min-w-[80px] text-center border border-white/5">
+              <div class="text-[10px] font-medium">Auto-generate</div>
+              <div class="text-[8px] text-white/40">ERAS formatted CV</div>
+            </div>
+            <span class="text-cyan-400/50 text-sm">→</span>
+            <div class="bg-white/5 rounded-xl px-2 py-2 min-w-[80px] text-center border border-white/5">
+              <div class="text-[10px] font-medium">Review & Export</div>
+              <div class="text-[8px] text-white/40">to ERAS</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content Phase -->
+      <div class="w-full mt-4">
+        <div class="text-center mb-8">
+          <span class="font-mono text-[11px] tracking-[2px] text-cyan-400 bg-cyan-400/10 px-3 py-1 rounded-full inline-block mb-3">Content Phase</span>
+          <h2 class="text-2xl md:text-3xl font-semibold tracking-tight bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
+            Technical execution & measurable impact
+          </h2>
+          <div class="w-12 h-0.5 bg-cyan-400 mx-auto mt-3 rounded-full"></div>
+        </div>
+
+        <!-- Technical Grid -->
+        <div class="grid md:grid-cols-3 gap-4 my-6">
+          <div class="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/5 transition-all duration-300 hover:border-cyan-400/30 hover:-translate-y-0.5">
+            <h4 class="font-semibold text-cyan-400 mb-2 text-sm">⚙️ Node.js Backend</h4>
+            <p class="text-white/60 text-xs leading-relaxed">Built a robust, scalable API layer handling user authentication, CV data persistence, and AI service orchestration.</p>
+          </div>
+          <div class="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/5 transition-all duration-300 hover:border-cyan-400/30 hover:-translate-y-0.5">
+            <h4 class="font-semibold text-cyan-400 mb-2 text-sm">🔄 WebSocket Real-time</h4>
+            <p class="text-white/60 text-xs leading-relaxed">Live collaboration features — users see CV updates instantly as AI generates suggestions.</p>
+          </div>
+          <div class="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/5 transition-all duration-300 hover:border-cyan-400/30 hover:-translate-y-0.5">
+            <h4 class="font-semibold text-cyan-400 mb-2 text-sm">⚡ Redis Caching</h4>
+            <p class="text-white/60 text-xs leading-relaxed">Reduced API latency by 65% with session management and response caching.</p>
+          </div>
+        </div>
+
+        <!-- AI Feature Deep Dive -->
+        <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-5 border border-white/5 my-6">
+          <h4 class="font-semibold text-amber-400 mb-4 text-sm">🧠 AI CV Builder — How it works</h4>
+          <div class="space-y-3">
+            <div class="flex gap-3">
+              <span class="text-[11px] font-bold text-cyan-400 bg-cyan-400/10 px-2 py-0.5 rounded-full h-fit">01</span>
+              <div><strong class="text-sm text-white">Natural Language Interview</strong><p class="text-white/60 text-xs mt-0.5">Conversational AI asks guided questions about medical education, rotations, research.</p></div>
+            </div>
+            <div class="flex gap-3">
+              <span class="text-[11px] font-bold text-cyan-400 bg-cyan-400/10 px-2 py-0.5 rounded-full h-fit">02</span>
+              <div><strong class="text-sm text-white">Intelligent Parsing</strong><p class="text-white/60 text-xs mt-0.5">Extracts key information and formats according to NRMP/ERAS 2025 guidelines.</p></div>
+            </div>
+            <div class="flex gap-3">
+              <span class="text-[11px] font-bold text-cyan-400 bg-cyan-400/10 px-2 py-0.5 rounded-full h-fit">03</span>
+              <div><strong class="text-sm text-white">Real-time Validation</strong><p class="text-white/60 text-xs mt-0.5">Checks for missing critical sections and suggests improvements.</p></div>
+            </div>
+            <div class="flex gap-3">
+              <span class="text-[11px] font-bold text-cyan-400 bg-cyan-400/10 px-2 py-0.5 rounded-full h-fit">04</span>
+              <div><strong class="text-sm text-white">One-click Export</strong><p class="text-white/60 text-xs mt-0.5">Generate PDF, DOCX, or directly fill ERAS web forms.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metrics -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 my-6">
+          <div class="text-center bg-white/5 rounded-xl p-3 border border-white/5">
+            <div class="text-xl font-bold text-amber-400">47%</div>
+            <div class="text-[9px] text-white/40">Reduction in CV time</div>
+          </div>
+          <div class="text-center bg-white/5 rounded-xl p-3 border border-white/5">
+            <div class="text-xl font-bold text-amber-400">3.2x</div>
+            <div class="text-[9px] text-white/40">More engagement</div>
+          </div>
+          <div class="text-center bg-white/5 rounded-xl p-3 border border-white/5">
+            <div class="text-xl font-bold text-amber-400">92%</div>
+            <div class="text-[9px] text-white/40">Satisfaction rate</div>
+          </div>
+          <div class="text-center bg-white/5 rounded-xl p-3 border border-white/5">
+            <div class="text-xl font-bold text-amber-400">65%</div>
+            <div class="text-[9px] text-white/40">Lower latency</div>
+          </div>
+        </div>
+
+        <!-- Testimonial -->
+        <div class="bg-gradient-to-r from-cyan-400/5 to-transparent rounded-2xl p-6 border-l-4 border-cyan-400 my-6">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00B4D8" stroke-width="1.6" class="mb-3">
+            <path d="M10 11H6C5.46957 11 4.96086 10.7893 4.58579 10.4142C4.21071 10.0391 4 9.53043 4 9V7C4 6.46957 4.21071 5.96086 4.58579 5.58579C4.96086 5.21071 5.46957 5 6 5H8C8.53043 5 9.03914 5.21071 9.41421 5.58579C9.78929 5.96086 10 6.46957 10 7V15C10 15.7956 9.68393 16.5587 9.12132 17.1213C8.55871 17.6839 7.79565 18 7 18H4"/>
+            <path d="M20 11H16C15.4696 11 14.9609 10.7893 14.5858 10.4142C14.2107 10.0391 14 9.53043 14 9V7C14 6.46957 14.2107 5.96086 14.5858 5.58579C14.9609 5.21071 15.4696 5 16 5H18C18.5304 5 19.0391 5.21071 19.4142 5.58579C19.7893 5.96086 20 6.46957 20 7V15C20 15.7956 19.6839 16.5587 19.1213 17.1213C18.5587 17.6839 17.7956 18 17 18H14"/>
+          </svg>
+          <p class="text-white/70 italic text-sm leading-relaxed">
+            "The redesigned platform and AI CV builder saved me weeks of formatting frustration. 
+            I matched into my top-choice residency program, and the CV tool was instrumental."
+          </p>
+          <p class="text-cyan-400 text-xs font-mono mt-3">— Dr. Priya M., IMG matched at Yale</p>
+        </div>
+
+        <!-- Design System -->
+        <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-5 border border-white/5 my-6">
+          <h4 class="font-semibold text-amber-400 mb-4 text-sm">🎨 Design system snapshot</h4>
+          <div class="flex flex-wrap justify-center gap-4 mb-5">
+            <div class="text-center"><div class="w-12 h-12 rounded-2xl bg-[#0A0E17] border border-white/10 mb-1"></div><span class="text-[9px] text-white/40">#0A0E17</span></div>
+            <div class="text-center"><div class="w-12 h-12 rounded-2xl bg-[#1A2332] border border-white/10 mb-1"></div><span class="text-[9px] text-white/40">#1A2332</span></div>
+            <div class="text-center"><div class="w-12 h-12 rounded-2xl bg-[#00B4D8] border border-white/10 mb-1"></div><span class="text-[9px] text-white/40">#00B4D8</span></div>
+            <div class="text-center"><div class="w-12 h-12 rounded-2xl bg-[#F4A261] border border-white/10 mb-1"></div><span class="text-[9px] text-white/40">#F4A261</span></div>
+          </div>
+          <div class="border-t border-white/10 pt-4">
+            <div class="text-xs font-mono text-white/60 mb-2">Typography — Inter + Space Mono</div>
+            <div class="text-[10px] text-white/40">Heading XL: 48px / Bold · Tight tracking</div>
+            <div class="text-[10px] text-white/40">Body: 16px / Regular · 1.6 line height</div>
+          </div>
+        </div>
+
+        <!-- Technical Challenges -->
+        <div class="my-6">
+          <h4 class="font-semibold text-amber-400 mb-3 text-sm">🔧 Technical challenges & solutions</h4>
+          <ul class="space-y-2">
+            <li class="text-white/60 text-xs flex items-start gap-2"><span class="text-cyan-400">▹</span> <strong>WebSocket stability:</strong> Implemented automatic reconnection with exponential backoff, maintaining 99.9% uptime.</li>
+            <li class="text-white/60 text-xs flex items-start gap-2"><span class="text-cyan-400">▹</span> <strong>Redis optimization:</strong> LRU caching strategy reduced memory footprint by 40%.</li>
+            <li class="text-white/60 text-xs flex items-start gap-2"><span class="text-cyan-400">▹</span> <strong>ERAS compliance:</strong> Dynamic template engine adapts to annual specification changes.</li>
+            <li class="text-white/60 text-xs flex items-start gap-2"><span class="text-cyan-400">▹</span> <strong>AI latency:</strong> Streaming responses with partial rendering for immediate feedback.</li>
+          </ul>
+        </div>
+
+        <!-- Future Roadmap -->
+        <div class="bg-cyan-400/5 rounded-2xl p-5 border border-cyan-400/15 my-6">
+          <h4 class="text-cyan-400 font-semibold text-sm mb-2">🗺️ Future roadmap</h4>
+          <p class="text-white/60 text-xs leading-relaxed">
+            Phase 2 includes LoR (Letter of Recommendation) management system with AI-assisted drafting, 
+            interview preparation chatbot using GPT-4, and a residency program matching algorithm. 
+            Integration with ERAS API for direct submission is planned for Q1 2026.
+          </p>
+        </div>
+
+        <!-- Conclusion -->
+        <div class="bg-cyan-400/5 rounded-2xl p-6 text-center border border-cyan-400/15 my-6">
+          <p class="text-white/70 text-sm leading-relaxed">
+            The USMLE Sarthi redesign successfully transformed a dated, cluttered website into a modern, 
+            AI-powered platform that empowers international medical graduates throughout their residency 
+            journey. By combining thoughtful UX with cutting-edge web technologies (Node.js, WebSocket, Redis), 
+            we delivered measurable improvements in user satisfaction, engagement, and career outcomes.
+          </p>
+        </div>
+      </div>
+
+      <!-- Case Navigation -->
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4 w-full mt-10 pt-5 border-t border-white/5">
+        <a href="index.html" class="inline-flex items-center gap-2 text-white/50 font-mono text-[11px] transition-all duration-300 hover:text-cyan-400 hover:gap-3">
+          <span class="text-sm">←</span> All Projects
+        </a>
+        <a href="coachy.html" class="inline-flex items-center gap-2 text-white/50 font-mono text-[11px] transition-all duration-300 hover:text-cyan-400 hover:gap-3">
+          Next Case Study <span class="text-sm">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
