@@ -1,372 +1,667 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Fastbeetle — Logistics App Case Study | Abid Wani</title>
-  <!-- Tailwind CSS CDN -->
-  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-   <link rel="stylesheet" href="./styles/output.css">
-  <!-- Custom config to match your design system -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>FastBeetle — UX Case Study | Enabling Commerce in Underserved Geographies</title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            amber: {
-              400: '#F5B042',
-              500: '#F5B042',
-            }
+            amber: { 400: '#F5B042', 500: '#F5B042' }
           },
           fontFamily: {
-            'sans': ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-            'mono': ['Space Mono', 'monospace'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['Space Mono', 'monospace'],
           },
           animation: {
-            'fade-in': 'fadeIn 0.5s ease-out',
-            'slide-up': 'slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+            'fade-in': 'fadeIn 0.6s ease-out',
+            'slide-up': 'slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+            'slide-up-delayed': 'slideUp 0.6s 0.15s cubic-bezier(0.16, 1, 0.3, 1) both',
+            'pulse-soft': 'pulseSoft 3s ease-in-out infinite',
+            'bounce-gentle': 'bounceGentle 2s ease-in-out infinite',
           },
           keyframes: {
-            fadeIn: {
-              '0%': { opacity: '0' },
-              '100%': { opacity: '1' },
-            },
-            slideUp: {
-              '0%': { opacity: '0', transform: 'translateY(10px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' },
-            },
+            fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+            slideUp: { '0%': { opacity: '0', transform: 'translateY(16px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+            pulseSoft: { '0%, 100%': { opacity: '0.5' }, '50%': { opacity: '0.8' } },
+            bounceGentle: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-6px)' } },
           },
-          backdropBlur: {
-            xs: '2px',
-          }
         }
       }
     }
   </script>
   <style>
-    /* Custom styles that Tailwind can't easily handle */
     @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Mono:wght@400;700&display=swap');
-    
-    /* Dark overlay background - matches your portfolio */
+
     body::before {
       content: "";
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: radial-gradient(circle at 25% 20%, rgba(245, 176, 66, 0.06), rgba(0, 0, 0, 0.96));
       pointer-events: none;
       z-index: -2;
     }
-    
     body::after {
       content: "";
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjciIG51bU9jdGF2ZXM9IjMiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjZikgb3BhY2l0eT0iMC4wMiIvPjwvc3ZnPg==');
       background-repeat: repeat;
       opacity: 0.1;
       pointer-events: none;
       z-index: -1;
     }
-    
-    /* Custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 4px;
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 4px; }
+
+    html { scroll-behavior: smooth; }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    ::-webkit-scrollbar-track {
+    .glass-card:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(245, 176, 66, 0.25);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(245,176,66,0.08) inset;
+    }
+    .glass-card-static {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .stat-glow { text-shadow: 0 0 60px rgba(245,176,66,0.3), 0 0 120px rgba(245,176,66,0.1); }
+    .problem-icon-box {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: rgba(245, 176, 66, 0.08);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid rgba(245, 176, 66, 0.15);
+    }
+
+    /* Floating side navigation */
+    .floating-nav {
+      position: fixed;
+      left: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 30;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .floating-nav a {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.25);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      position: relative;
+      padding-left: 0.75rem;
+    }
+    .floating-nav a::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
       background: transparent;
     }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(255,255,255,0.2);
-      border-radius: 4px;
+    .floating-nav a:hover,
+    .floating-nav a.active {
+      color: #F5B042;
     }
-    
-    /* Hide cursor on case study */
-    .cursor-hidden {
-      display: none;
+    .floating-nav a.active::before {
+      background: #F5B042;
+    }
+    .floating-nav a:hover::before {
+      background: rgba(245, 176, 66, 0.4);
+    }
+
+    @media (max-width: 768px) {
+      .floating-nav {
+        display: none;
+      }
+      /* Show a compact top nav on mobile */
+      .mobile-nav {
+        display: flex;
+        overflow-x: auto;
+        gap: 0.8rem;
+        padding: 0.5rem 1rem;
+        background: rgba(0,0,0,0.8);
+        backdrop-filter: blur(8px);
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+      }
+      .mobile-nav a {
+        font-size: 0.6rem;
+        color: rgba(255,255,255,0.5);
+        white-space: nowrap;
+      }
+      .mobile-nav a.active { color: #F5B042; }
+    }
+    @media (min-width: 769px) {
+      .mobile-nav { display: none; }
     }
   </style>
 </head>
 <body class="bg-black text-white font-sans antialiased">
 
-  <div class="max-w-3xl mx-auto px-5 py-8 md:py-10 relative">
+<!-- FLOATING SIDE NAVIGATION (desktop) -->
+<nav class="floating-nav">
+  <a href="#hero" class="active">Top</a>
+  <a href="#context">Context</a>
+  <a href="#challenges">Challenges</a>
+  <a href="#personas">Personas</a>
+  <a href="#discoveries">Discoveries</a>
+  <a href="#approach">Approach</a>
+  <a href="#impact">Impact</a>
+  <a href="#takeaways">Takeaways</a>
+</nav>
+
+<!-- MOBILE STICKY NAV -->
+<nav class="mobile-nav">
+  <a href="#hero">Top</a>
+  <a href="#context">Context</a>
+  <a href="#challenges">Challenges</a>
+  <a href="#personas">Personas</a>
+  <a href="#discoveries">Discoveries</a>
+  <a href="#approach">Approach</a>
+  <a href="#impact">Impact</a>
+  <a href="#takeaways">Takeaways</a>
+</nav>
+
+<!-- MAIN CENTERED CONTENT -->
+<div class="max-w-4xl mx-auto px-5 pb-12 md:pb-16 relative">
+
+ <!-- ============ HERO (full viewport, 3D card with scroll tilt) ============ -->
+<div id="hero" class="min-h-screen flex flex-col items-center justify-center text-center animate-slide-up relative">
+
+  <!-- 3D tilt card wrapper -->
+  <div id="hero-card" class="
+    relative
+    w-full max-w-3xl mx-4
+    p-12 md:p-20
+    rounded-3xl
+    bg-white/5 backdrop-blur-lg border border-white/10
+    shadow-2xl
+    transform-gpu transition-shadow duration-300 ease-out
+    hover:shadow-[0_8px_30px_rgba(245,176,66,0.12)]
+  " style="perspective: 1000px; transform-style: preserve-3d;">
     
-    <!-- Back link - matching your nav-icon style -->
-    <a href="index.html" class="inline-flex items-center gap-2 text-white/50 font-mono text-xs mb-10 transition-all duration-300 hover:text-amber-400 hover:gap-3 group">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-        <path d="M15 18L9 12L15 6"/>
-      </svg>
-      <span class="tracking-wide">Back to portfolio</span>
-    </a>
+    <!-- Subtle glow that appears on hover -->
+    <div class="absolute inset-0 rounded-3xl bg-gradient-to-br from-amber-400/5 to-transparent opacity-0 transition-opacity duration-300 pointer-events-none" id="hero-glow"></div>
 
-    <!-- Main Content -->
-    <div class="flex flex-col items-center">
-      
-      <!-- Hero Section -->
-      <div class="text-center mb-10 animate-slide-up">
-        <div class="flex items-center justify-center gap-2 mb-4">
-          <span class="font-mono text-[11px] bg-amber-400/10 text-amber-400 px-2 py-0.5 rounded-full border border-amber-400/20">01</span>
-          <span class="font-mono text-[11px] tracking-wider text-white/40 uppercase">Case Study</span>
-        </div>
-        
-        <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-3 bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
-          Fastbeetle <span class="text-white/70 bg-none">Logistics App</span>
-        </h1>
-        
-        <p class="text-white/60 max-w-lg mx-auto text-base leading-relaxed">
-          Building a delivery platform for regions traditional logistics left behind.
-        </p>
-        
-        <div class="flex flex-wrap justify-center gap-2 mt-4">
-          <span class="text-[11px] font-mono text-white/60 bg-white/5 backdrop-blur-sm px-3 py-1 rounded-full border border-white/5">UX Designer</span>
-          <span class="text-[11px] font-mono text-white/60 bg-white/5 backdrop-blur-sm px-3 py-1 rounded-full border border-white/5">UI Design</span>
-          <span class="text-[11px] font-mono text-white/60 bg-white/5 backdrop-blur-sm px-3 py-1 rounded-full border border-white/5">Logistics</span>
-          <span class="text-[11px] font-mono text-white/60 bg-white/5 backdrop-blur-sm px-3 py-1 rounded-full border border-white/5">E-commerce</span>
-        </div>
+    <!-- Content (unchanged) -->
+    <div class="relative z-10">
+      <div class="flex items-center justify-center gap-2 mb-6">
+        <span class="font-mono text-[11px] bg-amber-400/10 text-amber-400 px-2.5 py-0.5 rounded-full border border-amber-400/20">01</span>
+        <span class="font-mono text-[11px] tracking-wider text-white/40 uppercase">UX Case Study</span>
       </div>
-
-      <!-- Hero Visual - Glass Cards -->
-      <div class="w-full bg-white/5 backdrop-blur-sm rounded-3xl p-5 md:p-6 border border-white/5 mb-10 animate-fade-in">
-        <div class="flex justify-center gap-4 md:gap-6 flex-wrap">
-          <div class="bg-white/5 rounded-2xl px-5 py-3 text-center min-w-[100px] border border-white/5 transition-all duration-300 hover:-translate-y-1 hover:border-amber-400/30">
-            <div class="text-3xl mb-1">📦</div>
-            <div class="text-sm font-medium text-white/80">Real-time tracking</div>
-          </div>
-          <div class="bg-white/5 rounded-2xl px-5 py-3 text-center min-w-[100px] border border-white/5 transition-all duration-300 hover:-translate-y-1 hover:border-amber-400/30">
-            <div class="text-3xl mb-1">🚚</div>
-            <div class="text-sm font-medium text-white/80">Smart dispatching</div>
-          </div>
-          <div class="bg-white/5 rounded-2xl px-5 py-3 text-center min-w-[100px] border border-white/5 transition-all duration-300 hover:-translate-y-1 hover:border-amber-400/30">
-            <div class="text-3xl mb-1">📍</div>
-            <div class="text-sm font-medium text-white/80">Last-mile optimization</div>
-          </div>
-        </div>
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-4 text-white">FastBeetle</h1>
+      <p class="text-white/50 text-lg md:text-2xl max-w-lg mx-auto font-light mb-8">Enabling Commerce in Underserved Geographies</p>
+      <div class="inline-flex items-center gap-2 bg-amber-400/5 border border-amber-400/15 rounded-full px-4 py-1.5">
+        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse-soft"></span>
+        <span class="text-amber-400 font-mono text-sm font-semibold">500K+</span>
+        <span class="text-white/40 text-xs">shipments monthly across</span>
+        <span class="text-white/60 font-mono text-sm font-semibold">18,000+</span>
+        <span class="text-white/40 text-xs">pin codes</span>
       </div>
+    </div>
 
-      <!-- Design Phase -->
-      <div class="w-full">
-        <div class="text-center mb-8">
-          <span class="font-mono text-[11px] tracking-[2px] text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full inline-block mb-3">Design Phase</span>
-          <h2 class="text-2xl md:text-3xl font-semibold tracking-tight bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
-            Human‑centric logistics, <br>reimagined from ground up
-          </h2>
-          <div class="w-12 h-0.5 bg-amber-400 mx-auto mt-3 rounded-full"></div>
-        </div>
+    <!-- Bottom light accent -->
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-1 bg-gradient-to-r from-transparent via-amber-400/30 to-transparent rounded-full"></div>
+  </div>
 
-        <!-- Challenge -->
-        <div class="mb-8">
-          <h3 class="text-xl font-semibold mb-2 text-amber-400">The challenge</h3>
-          <p class="text-white/70 leading-relaxed text-sm md:text-base">
-            Rural and semi-urban regions suffer from inefficient delivery networks — high costs, 
-            lack of real-time visibility, and unreliable service. Traditional logistic providers 
-            ignore these "last-mile dark zones". Fastbeetle aimed to bridge that gap with a 
-            lightweight, intuitive platform for both merchants and delivery partners.
-          </p>
-        </div>
+  <!-- Scroll indicator (unchanged) -->
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce-gentle">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5">
+      <path d="M12 5v14M5 12l7 7 7-7" />
+    </svg>
+  </div>
+</div>
 
-        <!-- Design Approach -->
-        <div class="mb-8">
-          <h3 class="text-xl font-semibold mb-2 text-amber-400">Design approach</h3>
-          <p class="text-white/70 leading-relaxed text-sm md:text-base">
-            We adopted a mobile-first, accessibility-driven methodology. Through field research 
-            across 6 towns, we identified key friction points: package handover confusion, 
-            offline-first needs, and complex address systems. The result — a super-simple 
-            interface with voice-assisted address capture, smart route clustering, and 
-            low-data mode.
-          </p>
-        </div>
+  <!-- STAT CARDS -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 pb-[120px] animate-slide-up-delayed">
+    <div class="glass-card rounded-2xl p-4 text-center">
+      <div class="text-2xl md:text-3xl font-bold text-amber-400 stat-glow">87</div>
+      <div class="text-[10px] font-mono text-white/40 uppercase tracking-wider mt-1">Growth Score</div>
+      <div class="text-[9px] text-white/30 mt-0.5">Strong startup momentum</div>
+    </div>
+    <div class="glass-card rounded-2xl p-4 text-center">
+      <div class="text-2xl md:text-3xl font-bold text-white stat-glow">+187.75%</div>
+      <div class="text-[10px] font-mono text-white/40 uppercase tracking-wider mt-1">YoY Revenue</div>
+      <div class="text-[9px] text-white/30 mt-0.5">Aggressive expansion</div>
+    </div>
+    <div class="glass-card rounded-2xl p-4 text-center">
+      <div class="text-2xl md:text-3xl font-bold text-white stat-glow">60%</div>
+      <div class="text-[10px] font-mono text-white/40 uppercase tracking-wider mt-1">Primary Users</div>
+      <div class="text-[9px] text-white/30 mt-0.5">Small business owners</div>
+    </div>
+    <div class="glass-card rounded-2xl p-4 text-center">
+      <div class="text-2xl md:text-3xl font-bold text-amber-400 stat-glow">First</div>
+      <div class="text-[10px] font-mono text-white/40 uppercase tracking-wider mt-1">Mover</div>
+      <div class="text-[9px] text-white/30 mt-0.5">Kashmir logistics tech</div>
+    </div>
+  </div>
 
-        <!-- UI Showcase - Phone Mockups -->
-        <div class="flex flex-wrap justify-center gap-6 my-10">
-          <!-- Phone Mock 1 -->
-          <div class="text-center">
-            <div class="bg-white/5 rounded-[38px] p-2.5 shadow-2xl border border-white/10 max-w-[240px] mx-auto relative">
-              <div class="absolute top-2 left-1/2 -translate-x-1/2 w-28 h-6 bg-black rounded-2xl z-10"></div>
-              <div class="bg-[#050508] rounded-[30px] overflow-hidden aspect-[9/18] flex flex-col">
-                <div class="pt-8 pb-1 text-center text-[10px] text-white/40">9:41</div>
-                <div class="flex-1 p-3">
-                  <div class="text-center font-semibold text-xs text-amber-400 mb-2">🚚 Active delivery</div>
-                  <div class="h-16 bg-white/5 rounded-xl mb-2 bg-[radial-gradient(circle_at_30%_40%,rgba(245,176,66,0.2)_1px,transparent_1px)] bg-[length:10px_10px]"></div>
-                  <div class="bg-white/5 rounded-xl p-2 text-[11px] text-center mb-2">📍 3 stops left · 12 min</div>
-                  <div class="bg-amber-400 text-black font-semibold text-[11px] text-center py-2 rounded-3xl mt-1">Complete pickup</div>
-                </div>
-                <div class="flex justify-around py-2 border-t border-white/5 text-sm">
-                  <span class="text-amber-400">📦</span>
-                  <span>📍</span>
-                  <span>👤</span>
-                </div>
-              </div>
-            </div>
-            <p class="text-[11px] font-mono text-white/40 mt-2">Driver dashboard — simplified navigation</p>
-          </div>
-
-          <!-- Phone Mock 2 -->
-          <div class="text-center">
-            <div class="bg-white/5 rounded-[38px] p-2.5 shadow-2xl border border-white/10 max-w-[240px] mx-auto relative">
-              <div class="absolute top-2 left-1/2 -translate-x-1/2 w-28 h-6 bg-black rounded-2xl z-10"></div>
-              <div class="bg-[#050508] rounded-[30px] overflow-hidden aspect-[9/18] flex flex-col">
-                <div class="pt-8 pb-1 text-center text-[10px] text-white/40">9:41</div>
-                <div class="flex-1 p-3">
-                  <div class="text-center font-semibold text-xs text-amber-400 mb-2">📦 Track your order</div>
-                  <div class="space-y-2">
-                    <div class="text-[11px] text-amber-400 border-l-2 border-amber-400 pl-2">Order placed</div>
-                    <div class="text-[11px] text-white/40 border-l-2 border-white/10 pl-2">Picked up</div>
-                    <div class="text-[11px] text-white/40 border-l-2 border-white/10 pl-2">In transit</div>
-                    <div class="text-[11px] text-white/40 border-l-2 border-white/10 pl-2">Delivered</div>
-                  </div>
-                  <div class="bg-white/5 rounded-xl p-2 text-[11px] text-center mt-3">Est. arrival: Today, 4:30 PM</div>
-                </div>
-                <div class="flex justify-around py-2 border-t border-white/5 text-sm">
-                  <span>📦</span>
-                  <span>📍</span>
-                  <span class="text-amber-400">👤</span>
-                </div>
-              </div>
-            </div>
-            <p class="text-[11px] font-mono text-white/40 mt-2">Consumer tracking — transparent ETA</p>
-          </div>
-        </div>
-
-        <!-- Visual Identity -->
-        <div class="mb-8">
-          <h3 class="text-xl font-semibold mb-2 text-amber-400">Visual identity</h3>
-          <p class="text-white/70 leading-relaxed text-sm md:text-base">
-            The interface uses deep charcoal gradients, amber accents (#F5B042), and bold 
-            typography — ensuring high contrast and readability in outdoor conditions. 
-            Every card sits on a subtle glass layer that complements the brand's reliability 
-            while feeling modern.
-          </p>
-        </div>
-
-        <!-- Flow Diagram -->
-        <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-5 md:p-6 border border-white/5 my-8">
-          <h4 class="text-center font-semibold text-amber-400 mb-4 text-sm">Key user flow: order to delivery</h4>
-          <div class="flex flex-wrap justify-center items-center gap-1">
-            <div class="bg-white/5 rounded-xl px-3 py-2 min-w-[80px] text-center border border-white/5">
-              <div class="text-[11px] font-medium">Merchant</div>
-              <div class="text-[9px] text-white/40">creates shipment</div>
-            </div>
-            <span class="text-amber-400/50 text-base">→</span>
-            <div class="bg-white/5 rounded-xl px-3 py-2 min-w-[80px] text-center border border-white/5">
-              <div class="text-[11px] font-medium">Driver</div>
-              <div class="text-[9px] text-white/40">batch assignment</div>
-            </div>
-            <span class="text-amber-400/50 text-base">→</span>
-            <div class="bg-white/5 rounded-xl px-3 py-2 min-w-[80px] text-center border border-white/5">
-              <div class="text-[11px] font-medium">Live tracking</div>
-              <div class="text-[9px] text-white/40">& proof of delivery</div>
-            </div>
-            <span class="text-amber-400/50 text-base">→</span>
-            <div class="bg-white/5 rounded-xl px-3 py-2 min-w-[80px] text-center border border-white/5">
-              <div class="text-[11px] font-medium">Analytics</div>
-              <div class="text-[9px] text-white/40">& COD reconciliation</div>
-            </div>
-          </div>
-        </div>
+  <!-- ============ CONTEXT: Kashmir Logistics Gap ============ -->
+  <div id="context" class="pb-[120px] animate-slide-up">
+    <div class="text-center mb-6">
+      <span class="font-mono text-[10px] tracking-[2px] text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full inline-block mb-3">Context</span>
+      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">The Kashmir Logistics Gap</h2>
+      <p class="text-white/40 text-sm mt-2 max-w-lg mx-auto">A market opportunity emerging from geographic and infrastructure constraints</p>
+      <div class="w-10 h-0.5 bg-amber-400/60 mx-auto mt-3 rounded-full"></div>
+    </div>
+    <div class="grid md:grid-cols-3 gap-4">
+      <div class="glass-card rounded-2xl p-5">
+        <div class="problem-icon-box mb-3">📍</div>
+        <h4 class="font-semibold text-white/80 text-sm">Geographic Gap</h4>
+        <p class="text-white/45 text-xs leading-relaxed mt-1">Tier-2/Tier-3 cities and Kashmir regions underserved by major logistics players.</p>
       </div>
-
-      <!-- Content Phase -->
-      <div class="w-full mt-4">
-        <div class="text-center mb-8">
-          <span class="font-mono text-[11px] tracking-[2px] text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full inline-block mb-3">Content Phase</span>
-          <h2 class="text-2xl md:text-3xl font-semibold tracking-tight bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
-            Strategy, impact & learnings
-          </h2>
-          <div class="w-12 h-0.5 bg-amber-400 mx-auto mt-3 rounded-full"></div>
-        </div>
-
-        <!-- Content Grid -->
-        <div class="grid md:grid-cols-3 gap-4 my-6">
-          <div class="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/5 transition-all duration-300 hover:border-amber-400/30 hover:-translate-y-0.5">
-            <h4 class="font-semibold text-amber-400 mb-2 text-sm">📋 User research synthesis</h4>
-            <p class="text-white/60 text-xs leading-relaxed">Over 120 interviews with small e‑commerce sellers and delivery agents. Key pain points: unreliable pickup windows, paper-based tracking.</p>
-          </div>
-          <div class="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/5 transition-all duration-300 hover:border-amber-400/30 hover:-translate-y-0.5">
-            <h4 class="font-semibold text-amber-400 mb-2 text-sm">⚙️ Product metrics</h4>
-            <p class="text-white/60 text-xs leading-relaxed">42% reduction in failed deliveries, 28% faster cycle, 94% customer satisfaction among small merchants.</p>
-          </div>
-          <div class="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/5 transition-all duration-300 hover:border-amber-400/30 hover:-translate-y-0.5">
-            <h4 class="font-semibold text-amber-400 mb-2 text-sm">🎯 Business integration</h4>
-            <p class="text-white/60 text-xs leading-relaxed">Powers shipping for 350+ regional D2C brands. Plug‑and‑play API connects with Shopify, WooCommerce.</p>
-          </div>
-        </div>
-
-        <!-- Testimonial -->
-        <div class="bg-gradient-to-r from-amber-400/5 to-transparent rounded-2xl p-6 border-l-4 border-amber-400 my-6">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#F5B042" stroke-width="1.6" class="mb-3">
-            <path d="M10 11H6C5.46957 11 4.96086 10.7893 4.58579 10.4142C4.21071 10.0391 4 9.53043 4 9V7C4 6.46957 4.21071 5.96086 4.58579 5.58579C4.96086 5.21071 5.46957 5 6 5H8C8.53043 5 9.03914 5.21071 9.41421 5.58579C9.78929 5.96086 10 6.46957 10 7V15C10 15.7956 9.68393 16.5587 9.12132 17.1213C8.55871 17.6839 7.79565 18 7 18H4"/>
-            <path d="M20 11H16C15.4696 11 14.9609 10.7893 14.5858 10.4142C14.2107 10.0391 14 9.53043 14 9V7C14 6.46957 14.2107 5.96086 14.5858 5.58579C14.9609 5.21071 15.4696 5 16 5H18C18.5304 5 19.0391 5.21071 19.4142 5.58579C19.7893 5.96086 20 6.46957 20 7V15C20 15.7956 19.6839 16.5587 19.1213 17.1213C18.5587 17.6839 17.7956 18 17 18H14"/>
-          </svg>
-          <p class="text-white/70 italic text-sm leading-relaxed">
-            "Fastbeetle transformed how we handle daily shipments. Our delivery success rate jumped from 78% to 96% within 2 months."
-          </p>
-          <p class="text-amber-400 text-xs font-mono mt-3">— Ramesh K., E‑commerce owner, Coimbatore</p>
-        </div>
-
-        <!-- Design System -->
-        <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-5 border border-white/5 my-6">
-          <h4 class="font-semibold text-amber-400 mb-4 text-sm">🎨 Design system snapshot</h4>
-          <div class="flex flex-wrap justify-center gap-4 mb-5">
-            <div class="text-center">
-              <div class="w-12 h-12 rounded-2xl bg-[#0A0A0C] border border-white/10 mb-1"></div>
-              <span class="text-[10px] text-white/50">#0A0A0C</span>
-            </div>
-            <div class="text-center">
-              <div class="w-12 h-12 rounded-2xl bg-[#1A1C23] border border-white/10 mb-1"></div>
-              <span class="text-[10px] text-white/50">#1A1C23</span>
-            </div>
-            <div class="text-center">
-              <div class="w-12 h-12 rounded-2xl bg-[#F5B042] border border-white/10 mb-1"></div>
-              <span class="text-[10px] text-white/50">#F5B042</span>
-            </div>
-            <div class="text-center">
-              <div class="w-12 h-12 rounded-2xl bg-[#E0E0E0] border border-white/10 mb-1"></div>
-              <span class="text-[10px] text-white/50">#E0E0E0</span>
-            </div>
-          </div>
-          <div class="border-t border-white/10 pt-4">
-            <div class="text-xs font-mono text-white/60 mb-2">Typography — Inter + Space Mono</div>
-            <div class="text-[11px] text-white/40">Heading L: 48px / Bold</div>
-            <div class="text-[11px] text-white/40">Body M: 16px / Regular · 1.5 leading</div>
-          </div>
-        </div>
-
-        <!-- Takeaways -->
-        <div class="my-6">
-          <h4 class="font-semibold text-amber-400 mb-3 text-sm">📌 Key takeaways & future scope</h4>
-          <ul class="space-y-2">
-            <li class="text-white/60 text-sm flex items-start gap-2"><span class="text-amber-400">▹</span> Inclusive design for low-digital literacy drives real adoption</li>
-            <li class="text-white/60 text-sm flex items-start gap-2"><span class="text-amber-400">▹</span> Offline capabilities built trust in erratic network zones</li>
-            <li class="text-white/60 text-sm flex items-start gap-2"><span class="text-amber-400">▹</span> Next: AI-powered demand prediction + carbon-neutral delivery</li>
-          </ul>
-        </div>
-
-        <!-- Conclusion -->
-        <div class="bg-amber-400/5 rounded-2xl p-6 text-center border border-amber-400/15 my-6">
-          <p class="text-white/70 text-sm leading-relaxed">
-            Fastbeetle proves that logistics platforms can be both human‑centered and highly efficient. 
-            By blending empathetic UX with robust e‑commerce integration, we're helping close the 
-            last‑mile gap — one package at a time.
-          </p>
-        </div>
+      <div class="glass-card rounded-2xl p-5">
+        <div class="problem-icon-box mb-3">⚠️</div>
+        <h4 class="font-semibold text-white/80 text-sm">Market Failure</h4>
+        <p class="text-white/45 text-xs leading-relaxed mt-1">Big logistics companies ignore non-metro zones due to infrastructure challenges.</p>
       </div>
-
-      <!-- Case Navigation -->
-      <div class="flex flex-col md:flex-row justify-between items-center gap-4 w-full mt-10 pt-5 border-t border-white/5">
-        <a href="index.html" class="inline-flex items-center gap-2 text-white/50 font-mono text-[11px] transition-all duration-300 hover:text-amber-400 hover:gap-3">
-          <span class="text-sm">←</span> All Projects
-        </a>
-        <a href="saarthi.html" class="inline-flex items-center gap-2 text-white/50 font-mono text-[11px] transition-all duration-300 hover:text-amber-400 hover:gap-3">
-          Next Case Study <span class="text-sm">→</span>
-        </a>
+      <div class="glass-card rounded-2xl p-5">
+        <div class="problem-icon-box mb-3">💎</div>
+        <h4 class="font-semibold text-white/80 text-sm">Untapped Market</h4>
+        <p class="text-white/45 text-xs leading-relaxed mt-1">Small businesses, D2C brands, individuals struggling with reliable delivery options.</p>
       </div>
     </div>
   </div>
 
+  <!-- ============ FOUR CRITICAL UX CHALLENGES ============ -->
+  <div id="challenges" class="pb-[120px] animate-slide-up">
+    <div class="text-center mb-6">
+      <span class="font-mono text-[10px] tracking-[2px] text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full inline-block mb-3">Real UX Problems</span>
+      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">Four Critical Challenges</h2>
+      <p class="text-white/40 text-sm mt-2 max-w-lg mx-auto">Preventing logistics access in underserved regions</p>
+      <div class="w-10 h-0.5 bg-amber-400/60 mx-auto mt-3 rounded-full"></div>
+    </div>
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="glass-card rounded-2xl p-5 border-l-2 border-amber-400/40">
+        <div class="flex items-start gap-3">
+          <div class="problem-icon-box mt-0.5">🔒</div>
+          <div>
+            <span class="text-[10px] font-mono text-amber-400/70 uppercase">Access Problem</span>
+            <h4 class="font-semibold text-white/85 text-sm mt-0.5">Logistics Gap in Remote Regions</h4>
+            <p class="text-white/45 text-xs leading-relaxed mt-1.5"><strong class="text-white/55">Pain:</strong> Big players ignore non-metro zones.<br><strong class="text-white/55">Impact:</strong> Lack of pickups/delivery infrastructure.</p>
+          </div>
+        </div>
+      </div>
+      <div class="glass-card rounded-2xl p-5 border-l-2 border-amber-400/40">
+        <div class="flex items-start gap-3">
+          <div class="problem-icon-box mt-0.5">🛡️</div>
+          <div>
+            <span class="text-[10px] font-mono text-amber-400/70 uppercase">Trust Problem</span>
+            <h4 class="font-semibold text-white/85 text-sm mt-0.5">Trust Deficit</h4>
+            <p class="text-white/45 text-xs leading-relaxed mt-1.5"><strong class="text-white/55">Pain:</strong> Users fear delays, lost shipments.<br><strong class="text-white/55">Impact:</strong> No tracking transparency.</p>
+          </div>
+        </div>
+      </div>
+      <div class="glass-card rounded-2xl p-5 border-l-2 border-amber-400/40">
+        <div class="flex items-start gap-3">
+          <div class="problem-icon-box mt-0.5">🧩</div>
+          <div>
+            <span class="text-[10px] font-mono text-amber-400/70 uppercase">Platform Problem</span>
+            <h4 class="font-semibold text-white/85 text-sm mt-0.5">Fragmented Experience</h4>
+            <p class="text-white/45 text-xs leading-relaxed mt-1.5"><strong class="text-white/55">Pain:</strong> Broken across calls, WhatsApp, manual tracking.<br><strong class="text-white/55">Impact:</strong> No unified interface.</p>
+          </div>
+        </div>
+      </div>
+      <div class="glass-card rounded-2xl p-5 border-l-2 border-amber-400/40">
+        <div class="flex items-start gap-3">
+          <div class="problem-icon-box mt-0.5">📊</div>
+          <div>
+            <span class="text-[10px] font-mono text-amber-400/70 uppercase">Scalability</span>
+            <h4 class="font-semibold text-white/85 text-sm mt-0.5">Merchant Scalability</h4>
+            <p class="text-white/45 text-xs leading-relaxed mt-1.5"><strong class="text-white/55">Pain:</strong> No dashboard for bulk orders.<br><strong class="text-white/55">Impact:</strong> Lack of analytics and insights.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PERSONAS ============ -->
+  <div id="personas" class="pb-[120px] animate-slide-up">
+    <div class="text-center mb-6">
+      <span class="font-mono text-[10px] tracking-[2px] text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full inline-block mb-3">User Segments</span>
+      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">Three Distinct Personas</h2>
+      <p class="text-white/40 text-sm mt-2 max-w-lg mx-auto">Different needs but shared logistics challenges</p>
+      <div class="w-10 h-0.5 bg-amber-400/60 mx-auto mt-3 rounded-full"></div>
+    </div>
+    <div class="grid md:grid-cols-3 gap-4">
+      <div class="glass-card rounded-2xl p-5 relative overflow-hidden">
+        <div class="absolute top-0 right-0 bg-amber-400 text-black text-[10px] font-bold px-3 py-1 rounded-bl-xl font-mono">60%</div>
+        <div class="text-3xl mb-2">🏪</div>
+        <span class="text-[10px] font-mono text-amber-400/70 uppercase">Primary</span>
+        <h4 class="font-semibold text-white/85 text-sm mt-1">Small Business Owners</h4>
+        <p class="text-white/45 text-xs leading-relaxed mt-2">Industry leaders and local merchants. Key pain: unreliable delivery partners.</p>
+        <div class="mt-3 pt-3 border-t border-white/5"><span class="text-[9px] text-white/30">User Rate: </span><span class="text-amber-400 font-mono text-sm font-semibold">60%</span></div>
+      </div>
+      <div class="glass-card rounded-2xl p-5 relative overflow-hidden">
+        <div class="absolute top-0 right-0 bg-white/10 text-white/70 text-[10px] font-bold px-3 py-1 rounded-bl-xl font-mono">25%</div>
+        <div class="text-3xl mb-2">👤</div>
+        <span class="text-[10px] font-mono text-amber-400/70 uppercase">Secondary</span>
+        <h4 class="font-semibold text-white/85 text-sm mt-1">Individuals</h4>
+        <p class="text-white/45 text-xs leading-relaxed mt-2">Sending parcels locally/intercity. Key pain: limited options in remote areas.</p>
+        <div class="mt-3 pt-3 border-t border-white/5"><span class="text-[9px] text-white/30">User Rate: </span><span class="text-white/60 font-mono text-sm font-semibold">25%</span></div>
+      </div>
+      <div class="glass-card rounded-2xl p-5 relative overflow-hidden">
+        <div class="absolute top-0 right-0 bg-white/10 text-white/70 text-[10px] font-bold px-3 py-1 rounded-bl-xl font-mono">15%</div>
+        <div class="text-3xl mb-2">🏭</div>
+        <span class="text-[10px] font-mono text-amber-400/70 uppercase">Enterprise</span>
+        <h4 class="font-semibold text-white/85 text-sm mt-1">Pharma & Businesses</h4>
+        <p class="text-white/45 text-xs leading-relaxed mt-2">Pharmaceuticals and enterprises. Key pain: need consistent logistics.</p>
+        <div class="mt-3 pt-3 border-t border-white/5"><span class="text-[9px] text-white/30">User Rate: </span><span class="text-white/60 font-mono text-sm font-semibold">15%</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ STRATEGIC DISCOVERIES ============ -->
+  <div id="discoveries" class="pb-[120px] animate-slide-up">
+    <div class="text-center mb-6">
+      <span class="font-mono text-[10px] tracking-[2px] text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full inline-block mb-3">Strategic Discoveries</span>
+      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">Understanding Real Drivers</h2>
+      <p class="text-white/40 text-sm mt-2 max-w-lg mx-auto">Behind user behavior and business constraints</p>
+      <div class="w-10 h-0.5 bg-amber-400/60 mx-auto mt-3 rounded-full"></div>
+    </div>
+    <div class="space-y-4">
+      <div class="glass-card rounded-2xl p-5 md:p-6">
+        <div class="flex flex-col md:flex-row md:items-start gap-4">
+          <div class="problem-icon-box shrink-0">🔍</div>
+          <div class="flex-1">
+            <h4 class="font-semibold text-white/85 text-sm">Access Problem, Not Just Usability</h4>
+            <p class="text-white/45 text-xs leading-relaxed mt-1">The core challenge isn’t interface design — it’s creating infrastructure where none exists.</p>
+            <p class="text-amber-400/70 text-xs mt-2 font-medium">→ Solution: UX must focus on reducing operational friction, not just digital polish.</p>
+          </div>
+        </div>
+      </div>
+      <div class="glass-card rounded-2xl p-5 md:p-6">
+        <div class="flex flex-col md:flex-row md:items-start gap-4">
+          <div class="problem-icon-box shrink-0">📈</div>
+          <div class="flex-1">
+            <h4 class="font-semibold text-white/85 text-sm">Growth-First, Efficiency-Later Model</h4>
+            <p class="text-white/45 text-xs leading-relaxed mt-1"><span class="text-amber-400 font-mono font-semibold">+187.75%</span> YoY revenue growth, but ~96% profit drop signals aggressive expansion.</p>
+            <p class="text-amber-400/70 text-xs mt-2 font-medium">→ Solution: Product features must prioritize scale enablement over feature richness.</p>
+          </div>
+        </div>
+      </div>
+      <div class="glass-card rounded-2xl p-5 md:p-6">
+        <div class="flex flex-col md:flex-row md:items-start gap-4">
+          <div class="problem-icon-box shrink-0">🤝</div>
+          <div class="flex-1">
+            <h4 class="font-semibold text-white/85 text-sm">Trust is the Currency</h4>
+            <p class="text-white/45 text-xs leading-relaxed mt-1">In underserved markets, reliability and transparency matter more than speed.</p>
+            <p class="text-amber-400/70 text-xs mt-2 font-medium">→ Solution: Every touchpoint should reinforce predictability and accountability.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ APPROACH ============ -->
+  <div id="approach" class="pb-[120px] animate-slide-up">
+    <div class="text-center mb-6">
+      <span class="font-mono text-[10px] tracking-[2px] text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full inline-block mb-3">Approach</span>
+      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">The FastBeetle Solution</h2>
+      <p class="text-white/40 text-sm mt-2 max-w-lg mx-auto">A platform combining infrastructure and technology</p>
+      <div class="w-10 h-0.5 bg-amber-400/60 mx-auto mt-3 rounded-full"></div>
+    </div>
+    <div class="grid md:grid-cols-3 gap-4">
+      <div class="glass-card rounded-2xl p-5 text-center">
+        <div class="text-3xl mb-3">🏗️</div>
+        <h4 class="font-semibold text-white/85 text-sm">Hyperlocal Logistics Network</h4>
+        <p class="text-white/45 text-xs leading-relaxed mt-2">Warehouses and collection centers strategically placed in underserved regions.</p>
+      </div>
+      <div class="glass-card rounded-2xl p-5 text-center">
+        <div class="text-3xl mb-3">🔗</div>
+        <h4 class="font-semibold text-white/85 text-sm">Multi-Segment Model</h4>
+        <p class="text-white/45 text-xs leading-relaxed mt-2">Unified platform serving B2B, B2C, and C2C logistics needs seamlessly.</p>
+      </div>
+      <div class="glass-card rounded-2xl p-5 text-center">
+        <div class="text-3xl mb-3">♿</div>
+        <h4 class="font-semibold text-white/85 text-sm">Accessibility-First UX</h4>
+        <p class="text-white/45 text-xs leading-relaxed mt-2">Designed for low-tech users in Tier-2/Tier-3 markets with intuitive flows.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ IMPACT ============ -->
+  <div id="impact" class="pb-[120px] animate-slide-up">
+    <div class="text-center mb-6">
+      <span class="font-mono text-[10px] tracking-[2px] text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full inline-block mb-3">Impact</span>
+      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">Metrics & Business Impact</h2>
+      <p class="text-white/40 text-sm mt-2 max-w-lg mx-auto">Quantifiable results from solving real logistics challenges</p>
+      <div class="w-10 h-0.5 bg-amber-400/60 mx-auto mt-3 rounded-full"></div>
+    </div>
+    <div class="glass-card rounded-3xl p-6 md:p-8 text-center mb-5 border-amber-400/10">
+      <div class="text-5xl md:text-7xl font-bold text-amber-400 stat-glow tracking-tight">+187.75%</div>
+      <p class="text-white/40 text-sm mt-2">Merchant Sales Impact — YoY Revenue Growth</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div class="glass-card rounded-2xl p-4 text-center"><div class="text-xl font-bold text-white">500K+</div><div class="text-[10px] text-white/35 uppercase tracking-wider mt-1">Monthly Shipments</div></div>
+      <div class="glass-card rounded-2xl p-4 text-center"><div class="text-xl font-bold text-white">18,000+</div><div class="text-[10px] text-white/35 uppercase tracking-wider mt-1">Pin Codes Covered</div></div>
+      <div class="glass-card rounded-2xl p-4 text-center"><div class="text-xl font-bold text-amber-400">87</div><div class="text-[10px] text-white/35 uppercase tracking-wider mt-1">Growth Score</div></div>
+      <div class="glass-card rounded-2xl p-4 text-center"><div class="text-xl font-bold text-white">94%</div><div class="text-[10px] text-white/35 uppercase tracking-wider mt-1">User Satisfaction</div></div>
+    </div>
+  </div>
+
+  <!-- ============ USER FLOW ============ -->
+  <div class="pb-[120px] animate-slide-up">
+    <div class="glass-card-static rounded-2xl p-5 md:p-6">
+      <h4 class="text-center font-semibold text-amber-400 mb-5 text-sm">Key User Flow: Order to Delivery</h4>
+      <div class="flex flex-wrap justify-center items-center gap-2 md:gap-3">
+        <div class="bg-white/5 rounded-xl px-4 py-3 min-w-[90px] text-center border border-white/5"><div class="text-xs font-medium text-white/80">Merchant</div><div class="text-[9px] text-white/35 mt-0.5">creates shipment</div></div>
+        <span class="text-amber-400/50 text-lg">→</span>
+        <div class="bg-white/5 rounded-xl px-4 py-3 min-w-[90px] text-center border border-white/5"><div class="text-xs font-medium text-white/80">Driver</div><div class="text-[9px] text-white/35 mt-0.5">batch assignment</div></div>
+        <span class="text-amber-400/50 text-lg">→</span>
+        <div class="bg-white/5 rounded-xl px-4 py-3 min-w-[90px] text-center border border-white/5"><div class="text-xs font-medium text-white/80">Live Tracking</div><div class="text-[9px] text-white/35 mt-0.5">& proof of delivery</div></div>
+        <span class="text-amber-400/50 text-lg">→</span>
+        <div class="bg-white/5 rounded-xl px-4 py-3 min-w-[90px] text-center border border-white/5"><div class="text-xs font-medium text-white/80">Analytics</div><div class="text-[9px] text-white/35 mt-0.5">& COD reconciliation</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PHONE MOCKUPS ============ -->
+  <div class="pb-[120px] animate-slide-up">
+    <div class="flex flex-wrap justify-center gap-6 md:gap-8">
+      <div class="text-center">
+        <div class="bg-white/5 rounded-[38px] p-2.5 shadow-2xl border border-white/10 max-w-[220px] mx-auto relative">
+          <div class="absolute top-2 left-1/2 -translate-x-1/2 w-24 h-5 bg-black rounded-2xl z-10"></div>
+          <div class="bg-[#050508] rounded-[30px] overflow-hidden aspect-[9/18] flex flex-col">
+            <div class="pt-7 pb-1 text-center text-[9px] text-white/35">9:41</div>
+            <div class="flex-1 p-3">
+              <div class="text-center font-semibold text-[10px] text-amber-400 mb-2">🚚 Active Delivery</div>
+              <div class="h-14 bg-white/5 rounded-xl mb-2 bg-[radial-gradient(circle_at_30%_40%,rgba(245,176,66,0.2)_1px,transparent_1px)] bg-[length:10px_10px]"></div>
+              <div class="bg-white/5 rounded-xl p-2 text-[10px] text-center mb-2 text-white/55">📍 3 stops left · 12 min</div>
+              <div class="bg-amber-400 text-black font-semibold text-[10px] text-center py-2 rounded-3xl mt-1">Complete pickup</div>
+            </div>
+            <div class="flex justify-around py-2 border-t border-white/5 text-sm"><span class="text-amber-400">📦</span><span>📍</span><span>👤</span></div>
+          </div>
+        </div>
+        <p class="text-[10px] font-mono text-white/35 mt-2">Driver dashboard — simplified</p>
+      </div>
+      <div class="text-center">
+        <div class="bg-white/5 rounded-[38px] p-2.5 shadow-2xl border border-white/10 max-w-[220px] mx-auto relative">
+          <div class="absolute top-2 left-1/2 -translate-x-1/2 w-24 h-5 bg-black rounded-2xl z-10"></div>
+          <div class="bg-[#050508] rounded-[30px] overflow-hidden aspect-[9/18] flex flex-col">
+            <div class="pt-7 pb-1 text-center text-[9px] text-white/35">9:41</div>
+            <div class="flex-1 p-3">
+              <div class="text-center font-semibold text-[10px] text-amber-400 mb-2">📦 Track Your Order</div>
+              <div class="space-y-2">
+                <div class="text-[10px] text-amber-400 border-l-2 border-amber-400 pl-2">Order placed</div>
+                <div class="text-[10px] text-white/35 border-l-2 border-white/10 pl-2">Picked up</div>
+                <div class="text-[10px] text-white/35 border-l-2 border-white/10 pl-2">In transit</div>
+                <div class="text-[10px] text-white/35 border-l-2 border-white/10 pl-2">Delivered</div>
+              </div>
+              <div class="bg-white/5 rounded-xl p-2 text-[10px] text-center mt-3 text-white/50">Est. arrival: Today, 4:30 PM</div>
+            </div>
+            <div class="flex justify-around py-2 border-t border-white/5 text-sm"><span>📦</span><span>📍</span><span class="text-amber-400">👤</span></div>
+          </div>
+        </div>
+        <p class="text-[10px] font-mono text-white/35 mt-2">Consumer tracking — transparent ETA</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ DESIGN SYSTEM SNAPSHOT ============ -->
+  <div class="pb-[120px] animate-slide-up">
+    <div class="glass-card-static rounded-2xl p-5 md:p-6">
+      <h4 class="font-semibold text-amber-400 mb-4 text-sm text-center">🎨 Design System Snapshot</h4>
+      <div class="flex flex-wrap justify-center gap-4 mb-5">
+        <div class="text-center"><div class="w-10 h-10 rounded-xl bg-[#0A0A0C] border border-white/10 mb-1"></div><span class="text-[9px] text-white/40">#0A0A0C</span></div>
+        <div class="text-center"><div class="w-10 h-10 rounded-xl bg-[#1A1C23] border border-white/10 mb-1"></div><span class="text-[9px] text-white/40">#1A1C23</span></div>
+        <div class="text-center"><div class="w-10 h-10 rounded-xl bg-[#F5B042] border border-white/10 mb-1"></div><span class="text-[9px] text-white/40">#F5B042</span></div>
+        <div class="text-center"><div class="w-10 h-10 rounded-xl bg-[#E0E0E0] border border-white/10 mb-1"></div><span class="text-[9px] text-white/40">#E0E0E0</span></div>
+      </div>
+      <div class="border-t border-white/8 pt-4 text-center">
+        <div class="text-[10px] font-mono text-white/50 mb-1">Typography — Inter + Space Mono</div>
+        <div class="text-[10px] text-white/35">Heading L: 48px / Bold · Body M: 16px / Regular · 1.5 leading</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ TESTIMONIAL ============ -->
+  <div class="pb-[120px] animate-slide-up">
+    <div class="bg-gradient-to-r from-amber-400/5 to-transparent rounded-2xl p-6 border-l-4 border-amber-400">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F5B042" stroke-width="1.6" class="mb-3">
+        <path d="M10 11H6C5.46957 11 4.96086 10.7893 4.58579 10.4142C4.21071 10.0391 4 9.53043 4 9V7C4 6.46957 4.21071 5.96086 4.58579 5.58579C4.96086 5.21071 5.46957 5 6 5H8C8.53043 5 9.03914 5.21071 9.41421 5.58579C9.78929 5.96086 10 6.46957 10 7V15C10 15.7956 9.68393 16.5587 9.12132 17.1213C8.55871 17.6839 7.79565 18 7 18H4" />
+        <path d="M20 11H16C15.4696 11 14.9609 10.7893 14.5858 10.4142C14.2107 10.0391 14 9.53043 14 9V7C14 6.46957 14.2107 5.96086 14.5858 5.58579C14.9609 5.21071 15.4696 5 16 5H18C18.5304 5 19.0391 5.21071 19.4142 5.58579C19.7893 5.96086 20 6.46957 20 7V15C20 15.7956 19.6839 16.5587 19.1213 17.1213C18.5587 17.6839 17.7956 18 17 18H14" />
+      </svg>
+      <p class="text-white/60 italic text-sm leading-relaxed">"FastBeetle transformed how we handle daily shipments. Our delivery success rate jumped from 78% to 96% within 2 months."</p>
+      <p class="text-amber-400 text-xs font-mono mt-3">— Ramesh K., E‑commerce owner, Coimbatore</p>
+    </div>
+  </div>
+
+  <!-- ============ TAKEAWAYS ============ -->
+  <div id="takeaways" class="pb-[120px] animate-slide-up">
+    <h4 class="font-semibold text-amber-400 mb-3 text-sm">📌 Key Takeaways & Future Scope</h4>
+    <ul class="space-y-2">
+      <li class="text-white/55 text-sm flex items-start gap-2"><span class="text-amber-400 mt-0.5">▹</span> Inclusive design for low-digital literacy drives real adoption in underserved regions</li>
+      <li class="text-white/55 text-sm flex items-start gap-2"><span class="text-amber-400 mt-0.5">▹</span> Offline capabilities built trust in erratic network zones across Tier-2/Tier-3 markets</li>
+      <li class="text-white/55 text-sm flex items-start gap-2"><span class="text-amber-400 mt-0.5">▹</span> Trust and transparency — not speed — are the true currency in emerging logistics markets</li>
+      <li class="text-white/55 text-sm flex items-start gap-2"><span class="text-amber-400 mt-0.5">▹</span> Next: AI-powered demand prediction + carbon-neutral delivery routes</li>
+    </ul>
+  </div>
+
+  <!-- ============ CONCLUSION ============ -->
+  <div class="pb-[120px] animate-slide-up">
+    <div class="bg-amber-400/5 rounded-2xl p-6 text-center border border-amber-400/10">
+      <p class="text-white/60 text-sm leading-relaxed max-w-2xl mx-auto">
+        FastBeetle proves that logistics platforms can be both human‑centered and highly efficient.
+        By blending empathetic UX with robust e‑commerce integration, we're helping close the
+        last‑mile gap in India's most underserved regions — one package at a time.
+      </p>
+    </div>
+  </div>
+
+  <!-- ============ FOOTER NAVIGATION ============ -->
+  <div class="flex flex-col md:flex-row justify-between items-center gap-4 w-full pt-5 border-t border-white/5">
+    <a href="index.html" class="inline-flex items-center gap-2 text-white/40 font-mono text-[11px] transition-all duration-300 hover:text-amber-400 hover:gap-3"><span class="text-sm">←</span> All Projects</a>
+    <a href="saarthi.html" class="inline-flex items-center gap-2 text-white/40 font-mono text-[11px] transition-all duration-300 hover:text-amber-400 hover:gap-3">Next Case Study <span class="text-sm">→</span></a>
+  </div>
+
+</div><!-- end main-content -->
+
+<script>
+  // Active state for floating nav and mobile nav
+  const sections = document.querySelectorAll('div[id]');
+  const floatLinks = document.querySelectorAll('.floating-nav a');
+  const mobileLinks = document.querySelectorAll('.mobile-nav a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 120) {
+        current = section.getAttribute('id');
+      }
+    });
+    floatLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
+    });
+    mobileLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
+    });
+  });
+</script>
+<!-- Hero 3D Script  -->
+<script>
+  const heroCard = document.getElementById('hero-card');
+  const heroGlow = document.getElementById('hero-glow');
+
+  // Base rotation from scroll
+  let baseRotateX = 0;
+  // Mouse rotation additions
+  let mouseRotateX = 0;
+  let mouseRotateY = 0;
+
+  function updateCardTransform() {
+    const rx = baseRotateX + mouseRotateX;
+    const ry = mouseRotateY;
+    heroCard.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+  }
+
+  // Scroll: tilt back as you scroll past the hero
+  window.addEventListener('scroll', () => {
+    const heroSection = document.getElementById('hero');
+    const rect = heroSection.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+    // Progress: 0 when hero top at viewport top, 1 when hero bottom at viewport top
+    const progress = Math.min(1, Math.max(0, -rect.top / (rect.height - viewportHeight)));
+    baseRotateX = progress * 8; // tilt up to 8° backwards
+    updateCardTransform();
+  });
+
+  // Mouse move: subtle extra tilt (max 3°)
+  heroCard.addEventListener('mousemove', (e) => {
+    const rect = heroCard.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    mouseRotateY = ((x - centerX) / centerX) * 3;
+    mouseRotateX = ((y - centerY) / centerY) * -3;
+    updateCardTransform();
+    heroGlow.style.opacity = '1';
+  });
+
+  heroCard.addEventListener('mouseleave', () => {
+    mouseRotateX = 0;
+    mouseRotateY = 0;
+    updateCardTransform();
+    heroGlow.style.opacity = '0';
+  });
+
+  // Trigger initial tilt after load
+  window.addEventListener('load', () => {
+    window.dispatchEvent(new Event('scroll'));
+  });
+</script>
 </body>
 </html>
